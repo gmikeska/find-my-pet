@@ -1,11 +1,11 @@
 development:
   adapter: postgresql
-  database: d90g5hbqm6ko4b
+  database: dfuf4gtvlkndlc
   pool: 5
   timeout: 5000
 
 test:
   adapter: postgresql
-  database: d90g5hbqm6ko4b
+  database: dfuf4gtvlkndlc
   pool: 5
   timeout: 5000

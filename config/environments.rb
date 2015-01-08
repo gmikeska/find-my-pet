@@ -4,5 +4,5 @@ require_relative '../lib/models.rb' # the path to your application file
 
 ActiveRecord::Base.establish_connection(
   :adapter => 'postgresql',
-  :database => 'd90g5hbqm6ko4b'
+  :database => 'dfuf4gtvlkndlc'
 )
