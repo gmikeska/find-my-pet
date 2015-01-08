@@ -12,7 +12,22 @@
 	margin-left: 20px;
 }
 
+#header 
+{
+	background-color: #CCFFFF;
+	padding: 15px;
+	margin-bottom: 10px;
+}
 #main
 {
 	margin-left: 20px;
+}
+
+.mission 
+{
+	padding-top: 10px;
+	text-align: center;
+
+	font-size: 24px;
+	background-color: #CCFFFF;
 }
