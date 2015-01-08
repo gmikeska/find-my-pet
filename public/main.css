@@ -11,6 +11,7 @@
 {
 	margin-left: 20px;
 }
+
 body
 {
 		/*background-image: url(	); */
@@ -58,11 +59,15 @@ body a{
 	padding-bottom: 10px;
 	background-color: #337AB7;
 	border-radius: 25px;
+	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+		box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.75);
 }
 
 .bulletin > img
 {
 	width: 200px;
+
 }
 .mission 
 {
@@ -72,6 +77,9 @@ body a{
 	background-color: #337AB7;
 	margin-bottom:20px;
 	border-radius: 25px;
+	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+		box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.75);
 
 }
 
