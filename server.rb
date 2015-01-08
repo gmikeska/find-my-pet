@@ -5,8 +5,8 @@ require 'json'
 require 'bcrypt'
 require_relative 'config/environments.rb'
 
-
-class FindMyPet::Server < Sinatra::Application
+module FindMyPet
+class Server < Sinatra::Application
 	configure do
 	    enable :sessions
 	  end
@@ -22,4 +22,5 @@ class FindMyPet::Server < Sinatra::Application
 	get '/' do
 	  	erb :index
 	end
+end
 end
