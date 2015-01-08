@@ -1,6 +1,6 @@
 require 'sinatra'
 # require 'sinatra/reloader'
-require 'rest-client'
+#require 'rest-client'
 require 'json'
 require 'bcrypt'
 require_relative 'config/environments.rb'
