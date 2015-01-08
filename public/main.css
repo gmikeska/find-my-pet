@@ -33,6 +33,10 @@
 	background-color: #CCFFFF
 }
 
+.bulletin > img
+{
+	width: 200px;
+}
 .mission 
 {
 	padding-top: 10px;
