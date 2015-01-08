@@ -37,6 +37,7 @@ module FindMyPet
 		post 'signin' do
 		 #params: username, email
 		 #return: 
+		end
 
 		post '/lost' do
 		 	#create a new bulletin for a post pet
@@ -52,8 +53,7 @@ module FindMyPet
 		 end
 
 
-		 end
+		
 
-		end
 	end
 end
