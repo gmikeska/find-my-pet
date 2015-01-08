@@ -16,17 +16,12 @@ module FindMyPet
 				user_id = session['user_id']
 			end
 		 end
-		# #
-		# This is our only html view...
-		#
+
 		get '/' do
 		  	erb :index
 		end
 
 		get '/signup' do
-
-
-
 			@page_title = "Sign Up! - FindMyPet"
 			erb :"auth/signup"
 		end

@@ -44,14 +44,21 @@ body a{
 	/*margin-top:15%; */
 }
 
+.bulletin
+{
+	background-color: #CCFFFF
+}
 
-
+.bulletin > img
+{
+	width: 200px;
+}
 .mission 
 {
 	padding-top: 10px;
 	text-align: center;
-
 	font-size: 24px;
 	background-color: #CCFFFF;
+	margin-bottom:20px;
 }
 
