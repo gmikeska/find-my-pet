@@ -44,7 +44,13 @@ body a{
 	/*margin-top:15%; */
 	background-color: #337AB7;
 	border-radius: 25px;
-
+	width: 323px;
+	padding: 10px;
+}
+.loginform button
+{
+	margin-top:14px;
+}
 }
 
 .bulletin
@@ -72,5 +78,9 @@ body a{
 .missionfill 
 {
 	height: 160px;
+}
+#title:hover
+{
+	color:white;
 }
 
