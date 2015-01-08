@@ -30,7 +30,8 @@
 
 .bulletin
 {
-	background-color: #CCFFFF
+	background-color: #CCFFFF;
+	padding-bottom: 10px;
 }
 
 .bulletin > img
