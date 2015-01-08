@@ -16,9 +16,7 @@ module FindMyPet
 				user_id = session['user_id']
 			end
 		 end
-		# #
-		# This is our only html view...
-		#
+
 		get '/' do
 		  	erb :index
 		end
