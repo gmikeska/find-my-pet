@@ -24,9 +24,6 @@ module FindMyPet
 		end
 
 		get '/signup' do
-
-
-
 			@page_title = "Sign Up! - FindMyPet"
 			erb :"auth/signup"
 		end
