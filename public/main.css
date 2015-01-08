@@ -46,7 +46,8 @@ body a{
 
 .bulletin
 {
-	background-color: #CCFFFF
+	background-color: #337AB7;
+	border-radius: 25px;
 }
 
 .bulletin > img
@@ -58,7 +59,7 @@ body a{
 	padding-top: 10px;
 	text-align: center;
 	font-size: 24px;
-	background-color: #CCFFFF;
+	background-color: #337AB7	;
 	margin-bottom:20px;
 }
 
