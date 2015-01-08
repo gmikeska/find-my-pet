@@ -62,5 +62,12 @@ body a{
 	font-size: 24px;
 	background-color: #337AB7	;
 	margin-bottom:20px;
+	border-radius: 25px;
+
+}
+
+.missionfill 
+{
+	height: 160px;
 }
 
