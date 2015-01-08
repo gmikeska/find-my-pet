@@ -1,5 +1,5 @@
 require 'sinatra'
-# require 'sinatra/reloader'
+	require 'sinatra/reloader'
 #require 'rest-client'
 require 'json'
 require 'bcrypt'
@@ -25,16 +25,24 @@ module FindMyPet
 
 		get '/signup' do
 
+
+
+			@page_title = "Sign Up! - FindMyPet"
+			erb :"auth/signup"
 		end
 
-		post 'signup' do
+		post '/signup' do
 			#params: username, email
+
 		end
 
-		get 'signin' do
+		get '/signin' do
+
+			@page_title = "Sign In! - FindMyPet"
+			erb :"auth/signin"
 		end
 
-		post 'signin' do
+		post '/signin' do
 		 #params: username, email
 		 #return: 
 		end
