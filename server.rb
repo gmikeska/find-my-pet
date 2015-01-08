@@ -18,7 +18,13 @@ module FindMyPet
 		 end
 
 		get '/' do
-		  	erb :index
+			if session['user_id']
+				@mission_statement = File.read('views/readins/mission statement.erb')
+			erb :index, :locals=> {ms: @mission_statement}
+			else
+			  erb :index
+			end
+
 		end
 
 		get '/signup' do

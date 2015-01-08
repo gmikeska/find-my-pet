@@ -5,20 +5,22 @@
 </head>
 <body>
 <div id='main' class="container-fluid">
-	<div class="col-md-4"></div><div class="mission col-md-4"><p>Connect with other people in your area to find your missing pet.</p></div><div class="col-md-4 missionfill"></div>
+<%= @mission_statement %>
+<!-- <div class = "mission-container">
+	<div class="col-md-4"></div>
+	<div class="mission col-md-4">
+	<p>Connect with other people in your area to find your missing pet.</p>
+	</div>
+	<div class="col-md-4 missionfill"></div>
+	</div> -->
 
 <div class="bulletin-box"></div>
-<!-- <div class="col-md-1"></div>
 
-<div class="col-md-4 bulletin"></div>
-<div class="col-md-2"></div>
-
-<div class="col-md-4"></div>
-<div class="col-md-1"></div> -->
 
 </div>
 	
 <script>
+//implement loop through pet array
 a = {dogname: "pluto", location: "outer space", image: "http://www.ppmapartments.com/blog/wp-content/uploads/2013/10/dog-ball.jpg"}
 $('.bulletin-box').append(frontpageAlert(a))
 
@@ -26,8 +28,13 @@ b = {dogname: "fitz", location: "france", image: "https://encrypted-tbn0.gstatic
 $('.bulletin-box').append(frontpageAlert(b))
 
 $(document).ready(function(){
-	$("#footer").append('<center>"Tell Greg to put something witty in the footer"</center>')
-})
+	$("#footer").append('<center>"Business info etc."</center>')
+
+
+
+}) //end doc ready
+
+
 </script>
 
 

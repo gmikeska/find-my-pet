@@ -53,7 +53,10 @@ body a{
 	margin-top:14px;
 }
 
-
+.bulletin-box
+{
+	margin-top:50px;
+}
 .bulletin
 {
 	padding-bottom: 10px;
@@ -70,12 +73,12 @@ body a{
 
 }
 .mission 
-{
+{	
+	opacity: .75;
 	padding-top: 10px;
 	text-align: center;
 	font-size: 24px;
 	background-color: #337AB7;
-	margin-bottom:20px;
 	border-radius: 25px;
 	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.75);
@@ -83,9 +86,11 @@ body a{
 
 }
 
-.missionfill 
-{
-	height: 160px;
+.mission-container
+{	
+	
+	margin-top: 20px;
+	height: 100px;
 }
 #title:hover
 {
