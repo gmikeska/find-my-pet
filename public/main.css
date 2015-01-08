@@ -11,21 +11,37 @@
 {
 	margin-left: 20px;
 }
-
+body
+{
+		/*background-image: url(	); */
+	background-repeat: no-repeat;
+    background-position: left top;
+    background-origin: border-box;
+    color: white;
+}
+body a{
+	color:white;
+}
 #header 
 {
-	background-color: #CCFFFF;
+	background-color: #337AB7; 
 	padding: 15px;
 	margin-bottom: 10px;
+	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+		box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.75);
 }
 #main
 {
-	margin-left: 20px;
+	height:100%;
+	color:white;
+
+	
 }
 
 .loginform
 {
-	margin-top:15%;
+	/*margin-top:15%; */
 }
 
 
