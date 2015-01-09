@@ -1,9 +1,10 @@
 <div id="main">
 <center>
-<form class='loginform' method='POST' action:'/signin'>
+<form class='loginform' method='GET' action:'/activation'>
 <div>
 	<h2>Enter Your Activation Code!</h2> 
 	<div>
+	We've sent an activation code to <%= @user.email_address %>. It contains a link you can click to activate your account, and a code you can enter into the box below if the link doesn't work for you. If you need us to resend the activation email, click the "resend" button below!
 	<div class="input-group">
 	<span class="input-group-addon" id='activationspan'>Activation Code</span><input class="form-control" aria-describedby="activationspan" id="activation" name="activation">
 	</div>
