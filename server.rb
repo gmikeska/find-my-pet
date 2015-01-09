@@ -37,7 +37,10 @@ module FindMyPet
 		post '/signup' do
 			JSON.generate params
 			#params: username, email
-
+			a = User.new(params)
+			a.save!
+			#print success message to screen
+			redirect to '/signin'
 		end
 
 		get '/signin' do
@@ -62,12 +65,29 @@ module FindMyPet
 		 #return: 
 		end
 
+		get '/lost/:id' do
+			#return specific lost animal bulletin, and comments
+			MissingPet.find(params[:id])
+		end
+
 		post '/lost' do
-		 	#create a new bulletin for a post pet
+		 	#create a new bulletin for a lost pet
+		 	a = params
+		 	MissingPet.save(a)
+		 	redirect to '/'
 		end
 
 		post '/found' do
 		 	#create a new bulletin for a found pet
+		 	a = params
+		 	FoundPet.save(a)
+		 	redirect to '/'
+		end
+
+		get '/found/:id' do
+			#return specific found pet bulletin with comments
+			FoundPet.find(params[:id])
+
 		end
 
 		post '/message' do

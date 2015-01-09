@@ -6,29 +6,23 @@
 <body>
 <div id='main' class="container-fluid">
 <%= @mission_statement %>
-<!-- <div class = "mission-container">
-	<div class="col-md-4"></div>
-	<div class="mission col-md-4">
-	<p>Connect with other people in your area to find your missing pet.</p>
-	</div>
-	<div class="col-md-4 missionfill"></div>
-	</div> -->
 
 <div class="bulletin-box"></div>
-
 
 </div>
 	
 <script>
 //implement loop through pet array
-a = {dogname: "pluto", location: "outer space", image: "http://www.ppmapartments.com/blog/wp-content/uploads/2013/10/dog-ball.jpg"}
-$('.bulletin-box').append(frontpageAlert(a))
+	a = {dogname: "pluto", location: "outer space", image: "http://www.ppmapartments.com/blog/wp-content/uploads/2013/10/dog-ball.jpg"}
 
-b = {dogname: "fitz", location: "france", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv8an5wuwb3DuVyQePS_oEx2z8z91ZqJfOX0W1DM1NU2XMuLjfbg"}
-$('.bulletin-box').append(frontpageAlert(b))
+	$('.bulletin-box').append(frontpageAlert(a))
+
+	b = {dogname: "fitz", location: "france", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv8an5wuwb3DuVyQePS_oEx2z8z91ZqJfOX0W1DM1NU2XMuLjfbg"}
+
+	$('.bulletin-box').append(frontpageAlert(b))
 
 $(document).ready(function(){
-	$("#footer").append('<center>"Business info etc."</center>')
+	$("#footer").append('<center>"Business info, contact us, etc."</center>')
 
 
 
