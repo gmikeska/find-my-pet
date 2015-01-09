@@ -44,15 +44,16 @@ module FindMyPet
 		end
 
 		get '/signin' do
-
 			@page_title = "Sign In! - FindMyPet"
 			
 			erb :"auth/signin"
 		end
+
 		get '/home' do
 
 			erb :home
 		end
+
 		get '/signout' do
 
 			session.clear
@@ -61,8 +62,15 @@ module FindMyPet
 
 		post '/signin' do
 			JSON.generate params
-		 #params: username, email
-		 #return: 
+		 #params: email, password
+		 user = User.find_by(email_address: params['email'])
+		 puts "PASS: " + user.password
+		 if user["password"] == params["password"]
+		 	session['user_id'] = user['id']
+		 	redirect to '/'
+		 else
+		 	redirect to '/signin'
+		 end
 		end
 
 		get '/lost/:id' do
