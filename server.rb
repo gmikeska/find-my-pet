@@ -22,7 +22,7 @@ module FindMyPet
 				erb :index				
 			else
 			  @mission_statement = File.read('views/readins/mission statement.erb')
-			erb :index, :locals=> {ms: @mission_statement}
+				erb :index, :locals=> {ms: @mission_statement}
 			end
 
 		end
@@ -45,7 +45,7 @@ module FindMyPet
 		get '/signout' do
 
 			session.clear
-			redirect_to '/'
+			redirect to '/'
 		end
 
 		post '/signin' do
