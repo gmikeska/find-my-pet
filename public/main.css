@@ -1,12 +1,16 @@
 
 #login
 {
+	
 	float:right;
 	margin-right: 37px;
 	padding:5px;
-	border:1px solid white;
-}
 
+}
+#login a:hover{
+	text-decoration:none;
+	color:white;
+}
 #title
 {
 	margin-left: 20px;
@@ -28,9 +32,24 @@ body a{
 	background-color: #337AB7; 
 	padding: 15px;
 	margin-bottom: 10px;
-	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75);
-	-moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.75);
-		box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+
+	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75),
+						-7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.75),
+						-7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.75),
+						-7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+}
+#dropcloth
+{
+	background-color:white;
+	padding-bottom: 2px;
+	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75),
+						-7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.75),
+						-7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.75),
+						-7px 7px 14px 0px rgba(50, 50, 50, 0.75);
 }
 #main
 {
@@ -43,20 +62,27 @@ body a{
 .loginform
 {
 	/*margin-top:15%; */
+	opacity: .7;
 	background-color: #337AB7;
 	border-radius: 25px;
 	width: 323px;
 	padding: 10px;
+	margin-top: 50px;
 }
 .loginform button
 {
 	margin-top:14px;
 }
 
-
+.bulletin-box
+{
+	margin-top:50px;
+}
 .bulletin
 {
+	font-family: 'Roboto Slab', serif;
 	padding-bottom: 10px;
+	opacity: .8;
 	background-color: #337AB7;
 	border-radius: 25px;
 	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75);
@@ -67,15 +93,16 @@ body a{
 .bulletin > img
 {
 	width: 200px;
+	max-height: 131px;
 
 }
 .mission 
-{
+{	
+	opacity: .75;
 	padding-top: 10px;
 	text-align: center;
 	font-size: 24px;
 	background-color: #337AB7;
-	margin-bottom:20px;
 	border-radius: 25px;
 	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.75);
@@ -83,25 +110,34 @@ body a{
 
 }
 
-.missionfill 
+.mission-container
+{	
+	
+	margin-top: 20px;
+	height: 100px;
+}
+#title
 {
-	height: 160px;
+	font-family: 'Roboto Slab', serif;
+	/*font-weight: 700;*/
+	text-decoration:none;
+	text-shadow: 4px 4px 4px rgba(0, 0, 0, .2),
+				4px 4px 6px rgba(0, 0, 0, .2),	
+				4px 4px 4px rgba(0, 0, 0, .2);
 }
 #title:hover
 {
+	text-decoration:none;
 	color:white;
 }
 
 #footer {
-   height:45px;
+   height:65px;
    width:100%;
+   padding-top:25px;
    background-color: #337AB7;
    color:white;
 }
 
-/* IE 6 */
-* html #footer {
-   position:absolute;
-   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
-}
+
 

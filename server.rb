@@ -13,12 +13,18 @@ module FindMyPet
 
 		before do
 			if session['user_id']
-				user_id = session['user_id']
+				@user_id = session['user_id']
 			end
 		 end
 
 		get '/' do
-		  	erb :index
+			if session['user_id']
+				erb :index				
+			else
+			  @mission_statement = File.read('views/readins/mission statement.erb')
+				erb :index, :locals=> {ms: @mission_statement}
+			end
+
 		end
 
 		get '/signup' do
@@ -35,6 +41,11 @@ module FindMyPet
 
 			@page_title = "Sign In! - FindMyPet"
 			erb :"auth/signin"
+		end
+		get '/signout' do
+
+			session.clear
+			redirect to '/'
 		end
 
 		post '/signin' do
