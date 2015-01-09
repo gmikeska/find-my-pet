@@ -1,0 +1,5 @@
+module FindMyPet
+	class LostImage < ActiveRecord::Base
+		belongs_to :missing_pet
+	end
+end

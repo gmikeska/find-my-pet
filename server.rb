@@ -25,6 +25,9 @@ module FindMyPet
 				erb :index				
 			else
 			  @mission_statement = File.read('views/readins/mission statement.erb')
+				postst = MissingPet.all
+				@posts = postst.to_json
+				puts @posts
 				erb :index, :locals=> {ms: @mission_statement}
 			end
 

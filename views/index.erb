@@ -8,16 +8,21 @@
 <%= @mission_statement %>
 
 <div class="bulletin-box"></div>
-
+	
 </div>
 	
 <script>
 //implement loop through pet array
-	var lost = MissingPet.	
-
-	$('.bulletin-box').append(frontpageAlert(b))
-
+ 	
 $(document).ready(function(){
+	var print_bulletins = function (posts, pics){
+		_.each(posts,function(post){
+		$('.bulletin-box').append(lostBulletin(post))
+			})
+	}
+	//print posts!
+	print_bulletins(<%= @posts %>)
+
 	$("#footer").append('<center>"Business info, contact us, etc."</center>')
 
 
