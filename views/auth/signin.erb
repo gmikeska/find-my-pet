@@ -1,19 +1,17 @@
 <div id="main">
 <center>
-<form class='loginform'>
+<form class='loginform' method='POST' action:'/signin'>
 <div>
 	<h2>Enter Your Info To Sign-In!</h2> 
-	<table>
-	<tr>
-	<td><label for="email">Email:&nbsp&nbsp&nbsp&nbsp</label></td>
-	<td><input id="email" name="email"></td>
-	</tr>
-	<tr>
-	<td><label for="password">Password:</label></td>
-	<td><input type="password" id="password" name="password"></td>
-	</tr>
+	<div>
+	<div class="input-group">
+	<span class="input-group-addon" id='emailspan' >Email</span><input class="form-control" aria-describedby="emailspan" id="email" name="email">
+	</div>
+	<div class="input-group">
+	<span class="input-group-addon" id="passwordspan" >Password</span><input class="form-control" type="password" aria-describedby="passwordspan" name="password">
+	</div>
 
-	</table>
+	</div>
 	<button value="submit" class="btn btn-success">Submit!</button>
 	</div>
 </form>

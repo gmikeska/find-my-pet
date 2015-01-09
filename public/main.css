@@ -1,7 +1,7 @@
 
 #login
 {
-	
+		
 	float:right;
 	margin-right: 37px;
 	padding:5px;
@@ -109,7 +109,25 @@ body a{
 		box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.75);
 
 }
-
+.input-group, .alert-danger
+{
+	margin-top:13px;
+}
+#toolbar
+{
+	float:left;
+	width:200px;
+	border-radius: 25px;
+}
+#toolbar .row
+{
+	margin: 0 auto;
+	padding-left: 26%;
+	background-color: #337AB7;
+	border-top: 1px solid blue;
+	border-bottom: 1px solid blue;
+	font-size: 33px;
+}
 .mission-container
 {	
 	

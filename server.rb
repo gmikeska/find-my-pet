@@ -3,12 +3,14 @@ require 'sinatra'
 #require 'rest-client'
 require 'json'
 require 'bcrypt'
+require 'rack-flash'
 require_relative 'config/environments.rb'
 
 module FindMyPet
 	class Server < Sinatra::Application
 		configure do
 		    enable :sessions
+		    use Rack::Flash
 		  end
 
 		before do
@@ -33,6 +35,7 @@ module FindMyPet
 		end
 
 		post '/signup' do
+			JSON.generate params
 			#params: username, email
 
 		end
@@ -40,7 +43,12 @@ module FindMyPet
 		get '/signin' do
 
 			@page_title = "Sign In! - FindMyPet"
+			
 			erb :"auth/signin"
+		end
+		get '/home' do
+
+			erb :home
 		end
 		get '/signout' do
 
@@ -49,6 +57,7 @@ module FindMyPet
 		end
 
 		post '/signin' do
+			JSON.generate params
 		 #params: username, email
 		 #return: 
 		end
