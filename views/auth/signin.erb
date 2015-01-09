@@ -10,10 +10,27 @@
 	<div class="input-group">
 	<span class="input-group-addon" id="passwordspan" >Password</span><input class="form-control" type="password" aria-describedby="passwordspan" name="password">
 	</div>
-
-	</div>
+	<div class="alert alert-danger" role="alert" style="display:none" id="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <span id='flash'>Test</span>
+</div>
 	<button value="submit" class="btn btn-success">Submit!</button>
 	</div>
 </form>
 </center>
 </div>
+<script>
+
+$(document).ready(function(){
+	flash = '<%= flash[:alert]%>'
+	if(flash != '')
+	{
+		$('#flash').text(flash)
+		alert.show()
+
+	}
+
+
+})
+</script>
