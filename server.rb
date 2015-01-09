@@ -41,16 +41,27 @@ module FindMyPet
 			confirm = params['confirm']
 			email = params['email']
 			if(password == confirm)
+				params['activation'] = (0...8).map { (65 + rand(26)).chr }.join
+				params.delete('confirm')
+				params.delete('name')
+				params.delete('radius')
+				params['street_address'] = params['address']
+				params.delete('address')
+				params['email_address'] = params['email']
+				params.delete('email')
 				a = User.new(params)
 				a.save!
-				redirect to '/'
+				a.send_activation
+				redirect to '/activation'
 			else
 				flash.now[:alert] = "Please confirm your password."
 			end
 			#print success message to screen
 			erb :"auth/signup"
 		end
-
+		get '/activation' do
+			erb :"auth/activation"
+		end
 		get '/signin' do
 			@page_title = "Sign In! - FindMyPet"
 			
