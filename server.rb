@@ -82,7 +82,7 @@ module FindMyPet
 		post '/signin' do
 			JSON.generate params
 		 #params: email, password
-		 user = User.find_by(email_address: params['email'])
+		 user = User.find_by(email_address: params["email"])
 		 if user["password"] == params["password"]
 		 	session['user_id'] = user['id']
 		 	redirect to '/'
