@@ -5,13 +5,14 @@
 	<h2>Enter Your Info To Sign-Up!</h2> 
 	<div>
 	<div class="input-group">
-	<span class="input-group-addon" id="namespan" >Name</span><input type="text" class="form-control"  aria-describedby="namespan" name="name">
+	<span class="input-group-addon" id="namespan" >Name</span><input type="text" class="form-control"  aria-describedby="namespan" name="name" value="<%= @params['name']%>">
 	</div>
 	<div class="input-group">
-	<span class="input-group-addon" id="addrspan" >Address</span><input type="text" class="form-control"  aria-describedby="addrspan" name="address">
+	<span class="input-group-addon" id="addrspan" >Address</span><input type="text" class="form-control"  aria-describedby="addrspan" name="address" value="<%= @params['address']%>">
 	</div>
 	<div class="input-group">
 	<span class="input-group-addon" id="radiusspan" >Search Radius</span><select class="form-control" aria-describedby="radiusspan" name="radius">
+	  <option> </option>
 	  <option>10 miles</option>
 	  <option>20 miles</option>
 	  <option>30 miles</option>
@@ -20,7 +21,7 @@
 	</select>
 	</div>
 	<div class="input-group" >
-	<span class="input-group-addon" id='emailspan' >Email</span><input type="text" class="form-control" aria-describedby="emailspan" id="email" name="email">
+	<span class="input-group-addon" id='emailspan' >Email</span><input type="text" class="form-control" aria-describedby="emailspan" id="email" name="email" value="<%= @params['email']%>">
 	</div>
 	<div class="input-group">
 	<span class="input-group-addon" id="passwordspan" >Password</span><input class="form-control" type="password" aria-describedby="passwordspan" name="password">
@@ -41,11 +42,11 @@
 <script>
 
 $(document).ready(function(){
-	flash = '<%= flash[:alert]%>'
+	flash = '<%= flash[:alert] %>'
 	if(flash != '')
 	{
 		$('#flash').text(flash)
-		alert.show()
+		$('.alert').show()
 
 	}
 

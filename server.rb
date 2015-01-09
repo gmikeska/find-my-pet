@@ -35,12 +35,19 @@ module FindMyPet
 		end
 
 		post '/signup' do
-			JSON.generate params
-			#params: username, email
-			a = User.new(params)
-			a.save!
+			@params = params
+			password = params['password']
+			confirm = params['confirm']
+			email = params['email']
+			if(password == confirm)
+				a = User.new(params)
+				a.save!
+				redirect to '/'
+			else
+				flash.now[:alert] = "Please confirm your password."
+			end
 			#print success message to screen
-			redirect to '/signin'
+			erb :"auth/signup"
 		end
 
 		get '/signin' do
