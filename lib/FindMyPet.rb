@@ -76,6 +76,7 @@ module FMP
       CREATE TABLE IF NOT EXISTS lost(
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users (id),
+        name VARCHAR,
         animal_type VARCHAR,
         animal_breed VARCHAR,
         animal_gender VARCHAR,
@@ -97,6 +98,7 @@ module FMP
       CREATE TABLE IF NOT EXISTS found(
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users (id),
+        name VARCHAR,
         animal_type VARCHAR,
         animal_breed VARCHAR,
         animal_gender VARCHAR,
@@ -175,14 +177,14 @@ module FMP
       
       -- lost
       INSERT INTO lost (user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
-        date_lost, where_lost, chip_manufacturer, chip_id, other, created)
+        date_lost, where_lost, chip_manufacturer, chip_id, other, name, created)
         VALUES (1, 'Dog', 'German Shorthaired Pointer', 'Male', 'friendly, orange collar', TRUE, 
-          clock_timestamp(), '716 S Congress', 'Joes Dog Chips', 'ABCD9876', 'White, brown spots', 
+          clock_timestamp(), '716 S Congress', 'Joes Dog Chips', 'ABCD9876', 'White, brown spots', 'Fido', 
           clock_timestamp());
       INSERT INTO lost (user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
-        date_lost, where_lost, chip_manufacturer, chip_id, other, created)
+        date_lost, where_lost, chip_manufacturer, chip_id, other, name, created)
         VALUES (2, 'Cat', 'White Cat', 'Female', 'fearsome, attacks on command', TRUE, 
-          clock_timestamp(), '6th Street, Austin, TX', '', '', '', 
+          clock_timestamp(), '6th Street, Austin, TX', '', '', '', 'Fluffy' ,
           clock_timestamp());  
       
       -- found
