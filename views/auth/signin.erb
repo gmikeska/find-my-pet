@@ -23,11 +23,11 @@
 <script>
 
 $(document).ready(function(){
-	flash = '<%= flash[:alert]%>'
+	flash = '<%= flash[:alert] %>'
 	if(flash != '')
 	{
 		$('#flash').text(flash)
-		alert.show()
+		$('.alert').show()
 
 	}
 
