@@ -19,10 +19,10 @@ module FindMyPet
 
 		get '/' do
 			if session['user_id']
-				@mission_statement = File.read('views/readins/mission statement.erb')
-			erb :index, :locals=> {ms: @mission_statement}
+				erb :index				
 			else
-			  erb :index
+			  @mission_statement = File.read('views/readins/mission statement.erb')
+			erb :index, :locals=> {ms: @mission_statement}
 			end
 
 		end
