@@ -13,7 +13,7 @@ module FindMyPet
 
 		before do
 			if session['user_id']
-				user_id = session['user_id']
+				@user_id = session['user_id']
 			end
 		 end
 
@@ -41,6 +41,11 @@ module FindMyPet
 
 			@page_title = "Sign In! - FindMyPet"
 			erb :"auth/signin"
+		end
+		get '/signout' do
+
+			session.clear
+			redirect_to '/'
 		end
 
 		post '/signin' do

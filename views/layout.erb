@@ -13,8 +13,14 @@
 </head>
 <body>
 
-<div id='header'><div id='login'><h3><a href="/signin">Login</a> | <a href="/signup">Signup</a></h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a></div>
-
+<div id='header'><div id='login'>
+<h3>
+<% if @user_id %>
+<a href="/signout">Logout</a> 
+<% else %>
+<a href="/signin">Login</a> 
+<% end %>
+| <a href="/signup">Signup</a></h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a></div>
 <%= yield %>
 <div id='footer'></div>
 </body>
