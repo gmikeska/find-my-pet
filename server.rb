@@ -25,7 +25,7 @@ module FindMyPet
 				if @user.activation
 					erb :"auth/activation"
 				else
-					erb :index
+					erb :home
 				end				
 				postst = MissingPet.all
 				@posts = postst.to_json
@@ -63,21 +63,23 @@ module FindMyPet
 				params.delete('email')
 				a = User.new(params)
 				a.save!
-				a.send_activation
+				#a.send_activation
 				session['user_id'] = a.id
-				redirect to '/activation'
+				redirect to "/activation"
 			else
 				flash.now[:alert] = "Please confirm your password."
+				erb :"auth/signup"
 			end
 			#print success message to screen
-			erb :"auth/signup"
 		end
 		get '/activation' do
-			u = User.find_by(activation: params["activation"])
-			if @user_id == u.id
-				u.activation = nil;
-				u.save!()
-				redirect to '/'
+			if params['activation']
+				u = User.find_by(activation: params["activation"])
+				if @user_id == u.id
+					u.activation = nil;
+					u.save!()
+					redirect to '/'
+				end
 			end
 			erb :"auth/activation"
 		end
@@ -109,6 +111,21 @@ module FindMyPet
 		 end
 		end
 
+		get '/profile' do
+			#return specific found pet bulletin with comments
+			erb :profile
+		end
+
+		get '/lost' do
+		 	#view local lost animals
+		 	erb :found
+		end
+
+		get '/lost/new' do
+		 	#form to create a new bulletin for a lost pet
+		 	erb :found
+		end
+
 		get '/lost/:id' do
 			#return specific lost animal bulletin, and comments
 			MissingPet.find(params[:id])
@@ -121,12 +138,23 @@ module FindMyPet
 		 	redirect to '/'
 		end
 
+		get '/found' do
+		 	#create a new bulletin for a found pet
+		 	erb :found
+		end
+
 		post '/found' do
 		 	#create a new bulletin for a found pet
 		 	a = params
 		 	FoundPet.save(a)
 		 	redirect to '/'
 		end
+		get '/found/new' do
+		 	#create a new bulletin for a found pet
+
+		 	erb :"found/new"
+		end
+
 
 		get '/found/:id' do
 			#return specific found pet bulletin with comments

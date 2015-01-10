@@ -58,7 +58,15 @@ body a{
 
 	
 }
+#content
+{
+	background-color: #337AB7;
 
+}
+.form-control
+{
+	width: inherit !important;
+}
 .loginform
 {
 	/*margin-top:15%; */
