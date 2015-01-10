@@ -22,11 +22,15 @@ module FindMyPet
 
 		get '/' do
 			if session['user_id']
-				if @user.activation != nil
+				if @user.activation
 					erb :"auth/activation"
 				else
 					erb :index
 				end				
+				postst = MissingPet.all
+				@posts = postst.to_json
+				puts @posts
+				erb :index
 			else
 			  @mission_statement = File.read('views/readins/mission statement.erb')
 				postst = MissingPet.all

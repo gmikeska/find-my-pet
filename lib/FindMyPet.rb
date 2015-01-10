@@ -56,6 +56,7 @@ module FMP
       --##################################################################################
       CREATE TABLE IF NOT EXISTS users(
         id SERIAL PRIMARY KEY,
+        name VARCHAR,
         email_address VARCHAR,
         password VARCHAR,
         street_address VARCHAR,
@@ -168,12 +169,12 @@ module FMP
   def self.seed_tables db
     db.exec <<-SQL
       -- users
-      INSERT INTO users (email_address, password, street_address, city, state, zipcode)
-        VALUES ('greghorne@hotmail.com','1234', '1116 S Tamarack Ave', 'Broken Arrow', 'OK','74012');
-      INSERT INTO users (email_address, password, street_address, city, state, zipcode)
-        VALUES ('julia@pets.com','1234', '716 Congress Ave', 'Austin', 'TX','');
-      INSERT INTO users (email_address, password, street_address, city, state, zipcode)
-        VALUES ('greg@bitcoin.com','1234', '101 S Main St', 'Dallas', 'TX','');
+      INSERT INTO users (name, email_address, password, street_address, city, state, zipcode)
+        VALUES ('Greg H','greghorne@hotmail.com','1234', '1116 S Tamarack Ave', 'Broken Arrow', 'OK','74012');
+      INSERT INTO users (name, email_address, password, street_address, city, state, zipcode)
+        VALUES ('Julia','julia@pets.com','1234', '716 Congress Ave', 'Austin', 'TX','');
+      INSERT INTO users (name, email_address, password, street_address, city, state, zipcode)
+        VALUES ('Greg M','greg@bitcoin.com','1234', '101 S Main St', 'Dallas', 'TX','');
       
       -- lost
       INSERT INTO lost (user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
