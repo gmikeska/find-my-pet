@@ -50,11 +50,12 @@ module GEO
         distance = myLocation.distance_to(theirLocation)
 
         puts "Distance: " + distance.to_s
-        if (distance <= radius) 
+        if (distance <= radius.to_f) 
           resultsArray.push("#{result['user_id']}".to_i)
         end
       end
     end
     puts resultsArray
     return resultsArray
+  end
 end
