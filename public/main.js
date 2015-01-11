@@ -1,6 +1,8 @@
-lostBulletin = _.template("<div class='col-md-1 bltn-grid-buffer'></div><div class='col-md-4 bulletin'><h3><%= name %></h3> <%=animal_breed %><br><%= animal_gender%><br>Lost at: <%= where_lost %></div><div class='col-md-1 bltn-grid-buffer'></div>") //this is a template, call it to build bulletins
+lostBulletin = _.template("<div class='col-md-1 bltn-grid-buffer'></div><div class='col-md-4 bulletin'><h3><a href='/lost/<%= id %>'><%= name %></a></h3> <%=animal_breed %><br><%= animal_gender%><br>Lost at: <%= where_lost %></div><div class='col-md-1 bltn-grid-buffer'></div>") //this is a template, call it to build bulletins
+foundBulletin = _.template("<div class='col-md-1 bltn-grid-buffer'></div><div class='col-md-4 bulletin'><h3><a href='/found/<%= id %>'><%= name %></a></h3> <%=animal_breed %><br><%= animal_gender%><br>Found at: <%= where_found %></div><div class='col-md-1 bltn-grid-buffer'></div>")
 
 commentsTemplate = _.template("<div class='col-md-6 comment'><%= message %></div>")
+
 navBar = _.template('<nav class="navbar navbar-default"><ul class="nav navbar-nav"><%= items %></ul></nav>')
 navItem = _.template('<li id="<%= path.substring(1, path.length) %>"><a href="<%= path %>"><%= name %></a></li>')
 navItemActive = _.template('<li class="active"><a href="<%= path %>"><%= name %><span class="sr-only">(current)</span></a></li>')

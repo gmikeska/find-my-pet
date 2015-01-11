@@ -117,7 +117,9 @@ module FindMyPet
 
 		get '/lost' do
 		 	#view gallery of local lost animals
-		 	erb :"missing"
+		 	bulletins = MissingPet.all
+		 	@bulletins = bulletins.to_json
+		 	erb :missing
 		end
 
 		get '/lost/new' do 
@@ -142,6 +144,8 @@ module FindMyPet
 
 		get '/found' do
 		 	#create a new bulletin for a found pet
+		 	bulletins = FoundPet.all
+		 	@bulletins = bulletins.to_json
 		 	erb :found
 		end
 

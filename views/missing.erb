@@ -1,3 +1,26 @@
 <div class="container-fluid" id="main">
-
+<div class="bulletin-box"></div>
+	
 </div>
+</div>
+<script>
+//implement loop through pet array
+ 	
+$(document).ready(function(){
+	var print_bulletins = function (posts, pics){
+		_.each(posts,function(post){
+		$('.bulletin-box').append(lostBulletin(post))
+			})
+	}
+	//print posts!
+	print_bulletins(<%= @bulletins %>)
+
+	$("#footer").append('<center>"Business info, contact us, etc."</center>')
+
+
+
+}) //end doc ready
+
+
+</script>
+
