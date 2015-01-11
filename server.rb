@@ -22,11 +22,11 @@ module FindMyPet
 
 		get '/' do
 			if session['user_id']
-				if @user.activation
-					erb :"auth/activation"
-				else
-					erb :home
-				end				
+				# if @user.activation
+				# 	erb :"auth/activation"
+				# else
+				# 	erb :home
+				# end				
 				postst = MissingPet.all
 				@posts = postst.to_json
 				puts @posts
@@ -35,7 +35,6 @@ module FindMyPet
 			  @mission_statement = File.read('views/readins/mission statement.erb')
 				postst = MissingPet.all
 				@posts = postst.to_json
-				puts @posts
 			  @mission_statement = File.read('views/readins/mission statement.erb')
 
 				erb :index, :locals=> {ms: @mission_statement}
@@ -134,7 +133,7 @@ module FindMyPet
 		post '/lost' do
 		 	#create a new bulletin for a lost pet
 		 	a = params
-		 	MissingPet.save(a)
+		 	MissingPet.save!(a)
 		 	redirect to '/'
 		end
 
