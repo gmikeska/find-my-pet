@@ -228,7 +228,7 @@ module FindMyPet
 
 		end
 
-		post 'bulletin/:id/message' do
+		post 'post/:id/message' do
 		 	#post new discussion message to a lost/found bulletin
 		 	#params: post id, user id
 		 end

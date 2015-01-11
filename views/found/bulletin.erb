@@ -11,7 +11,10 @@
 
 </div>
 <div class="comments col-md-12">
-<h4>Replies</h4>
+<h4>Replies</h4><p>Add a new comment:</p><form method="post" action="post/<%= @info.id %>/comment">
+<textarea class="commentbox" name="message"></textarea><br>
+<input type="submit">
+</form>
 </div>
 
 </div>
