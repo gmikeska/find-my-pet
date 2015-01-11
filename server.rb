@@ -204,7 +204,8 @@ module FindMyPet
 			#return specific lost animal bulletin, and comments
 			@info = MissingPet.find(params[:id])
 			messages = LostMessage.where(animal_id: params['id'])
-			
+			messages.each{|m|
+				m.user << messages}
 			@messages = messages.to_json
 			erb :"lost/bulletin"
 		end
