@@ -1,5 +1,6 @@
 require 'geokit'
 require 'pg'
+require 'json'
 
 module GEO
 
@@ -38,7 +39,7 @@ module GEO
     resultsArray = Array.new
 
     if (results.count <= 0)  
-      puts "no data"
+      
     else
       resultsArray = Array.new    # return array
       myLocation = Geokit::LatLng.new(myLongitude, myLatitude)
@@ -49,13 +50,16 @@ module GEO
         theirLocation = Geokit::LatLng.new("#{result['where_longitude']}", "#{result['where_latitude']}")
         distance = myLocation.distance_to(theirLocation)
 
-        puts "Distance: " + distance.to_s
+        #puts "Distance: " + distance.to_s
         if (distance <= radius.to_f) 
-          resultsArray.push("#{result['user_id']}".to_i)
+          # resultsArray.push("#{result['user_id']}".to_i)
+          resultsArray.push(result)
         end
       end
     end
-    puts resultsArray
+    # puts resultsArray
+    # puts "-----"
     return resultsArray
+
   end
 end
