@@ -24,7 +24,10 @@ module FindMyPet
 			message = "Dear #{self.name},\nThank you for signing up for Bring Spot Home!\n\nYour activation code is: #{self.activation}\n\nYou can click on the following link to activate your account:\n http://localhost:4567/activation?activation=#{self.activation}\n\n Thanks!\nThe BSH Team!"
 			self.send_email(subject, message)
 		end
+		def within_radius(tablename)
+			GEO.getWithinRadius(self.radius, self.longitude, self.latitude, tablename)
 
+		end
 		def local_alert (type, params)
 			subject = "New '#{type}' alert in your area - Bring Spot Home"
 			message = "Dear #{self.name},\nThere is a new #{type} alert in your area.\nHere are the details:\n"
