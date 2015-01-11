@@ -50,15 +50,15 @@ module FindMyPet
 
 		post '/signup' do
 			@params = params
+
 			password = params['password']
 			confirm = params['confirm']
 			email = params['email']
-
+			params.delete('password')
 			if(password == confirm)
 				begin
-					params['activation'] = (0...8).map { (65 + rand(26)).chr }.join
+					#params['activation'] = (0...8).map { (65 + rand(26)).chr }.join
 					params.delete('confirm')
-					params.delete('radius')
 					params['street_address'] = params['address']
 					point = GEO.geocode("#{params['street_address']}, #{params['city']}, #{params['state']}")
 					params.delete('address')
@@ -68,6 +68,7 @@ module FindMyPet
 						params['email_address'] = params['email']
 						params.delete('email')
 						a = User.new(params)
+						a.password = password
 						a.save!
 						session['user_id'] = a.id
 						redirect to "/"
@@ -120,7 +121,7 @@ module FindMyPet
 		post '/signin' do
 		 #params: email, password
 		 user = User.find_by(email_address: params["email"])
-		 if user["password"] == params["password"]
+		 if user.password == params["password"]
 		 	session['user_id'] = user['id']
 		 	redirect to '/'
 		 else
@@ -145,7 +146,6 @@ module FindMyPet
 					params.delete('password')
 					params.delete('confirm')
 				end
-				params.delete('radius')
 				params['street_address'] = params['address']
 				point = GEO.geocode("#{params['street_address']}, #{params['city']}, #{params['state']}")
 				params.delete('address')
@@ -183,8 +183,7 @@ module FindMyPet
 		end
 		get '/lost' do
 		 	#view gallery of local lost animals
-		 	bulletins = MissingPet.all
-		 	@bulletins = bulletins.to_json
+		 	@bulletins = @user.within_radius('lost').to_json
 		 	erb :missing
 		end
 
@@ -211,8 +210,8 @@ module FindMyPet
 
 		get '/found' do
 		 	#create a new bulletin for a found pet
-		 	bulletins = FoundPet.all
-		 	bulletins.each{ |b|
+		 	@bulletins = @user.within_radius('found').to_json
+		 	@bulletins.each{ |b|
 		 		if b.name == nil 
 		 			b['name'] = 'unknown'
 		 		end

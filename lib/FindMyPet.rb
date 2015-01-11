@@ -26,6 +26,11 @@ module FMP
   #
   # this may work if you already have your db and tables
   #
+  def self.do(dbname)
+    db = self.create_db_connection(dbname)
+    self.create_tables db
+    self.seed_tables db
+  end
   def self.do_it(dbname)
     db = self.create_db_connection(dbname)
     self.clear db
@@ -69,7 +74,8 @@ module FMP
         phone_cell VARCHAR,
         fb_account VARCHAR,
         fb_token VARCHAR,
-        radius NUMERIC
+        radius NUMERIC,
+        activation VARCHAR
       );
 
       --##################################################################################
