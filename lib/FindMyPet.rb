@@ -120,6 +120,7 @@ module FMP
       --##################################################################################
       CREATE TABLE IF NOT EXISTS lost_messages(
         id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users (id),
         animal_id INTEGER REFERENCES lost (id),
         message VARCHAR,
         last_location VARCHAR,
@@ -130,6 +131,7 @@ module FMP
 
       CREATE TABLE IF NOT EXISTS found_messages(
         id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users (id),
         animal_id INTEGER REFERENCES found (id),
         message VARCHAR,
         last_location VARCHAR,
@@ -196,12 +198,12 @@ module FMP
           clock_timestamp());  
 
       -- lost_messages
-      INSERT INTO lost_messages (animal_id, message, last_location, created)
-        VALUES (2, 'I may have seen your dog hanging out on 5th street', '5th street', clock_timestamp());
+      INSERT INTO lost_messages (animal_id, user_id, message, last_location, created)
+        VALUES (2, 1, 'I may have seen your dog hanging out on 5th street', '5th street', clock_timestamp());
       
       -- found messages
-      INSERT INTO found_messages (animal_id, message, last_location, created)
-        VALUES (1, 'Does the pit bull have a mark above left eye?', '', clock_timestamp());
+      INSERT INTO found_messages (animal_id, user_id, message, last_location, created)
+        VALUES (1, 2, 'Does the pit bull have a mark above left eye?', '', clock_timestamp());
 
       -- lost_images
       INSERT INTO lost_images (animal_id, image_url) VALUES (1, 'http://2.bp.blogspot.com/_YGZsB8JQLfQ/S9OqhNSsuLI/AAAAAAAAA6k/631FUM5efM0/s1600/Greater+Swiss+Mountain_003.jpg')

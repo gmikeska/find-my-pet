@@ -151,12 +151,29 @@ module FindMyPet
 
 				flash.now[:success] = "Your profile has been updated!"
 
+<<<<<<< HEAD
 				erb :profile
 			rescue ActiveRecord::RecordInvalid
 				flash.now[:alert] = $!.to_s
 				erb :profile
 			end
 		end
+=======
+		get '/userinfo' do
+			user = User.find(session['user_id'])
+			@user = user.to_json
+			mylostposts = MissingPet.where(user_id: session['user_id'])
+			@mylostposts = mylostposts.to_json
+			myfoundposts = FoundPet.where(user_id: session['user_id'])
+			@myfoundposts = myfoundposts.to_json
+			myfcomments = FoundMessage.where(user_id: session['user_id'])
+			mylcomments = LostMessage.where(user_id: session['user_id'])
+			@myfcomments = myfcomments.to_json
+			@mylcomments = mylcomments.to_json
+			erb :profileview
+		end
+
+>>>>>>> 6d68ca43c06a494c2283c90bc6604c9df5c4902e
 		get '/lost' do
 		 	#view gallery of local lost animals
 		 	bulletins = MissingPet.all
@@ -187,6 +204,11 @@ module FindMyPet
 		get '/found' do
 		 	#create a new bulletin for a found pet
 		 	bulletins = FoundPet.all
+		 	bulletins.each{ |b|
+		 		if b.name == nil 
+		 			b['name'] = 'unknown'
+		 		end
+		 	}
 		 	@bulletins = bulletins.to_json
 		 	erb :found
 		end

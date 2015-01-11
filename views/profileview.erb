@@ -1,0 +1,11 @@
+<div class="container-fluid" id="main">
+<div class="bulletin col-md-10">
+<h3>Your User Info</h3>
+<h4>Lost/Found pet bulletins you've created:</h4>
+<% @mylostposts.each{|p| %>
+	<a href="/lost/<%= p.id %>"> <%= p.name %> </a>
+	<% } %>
+<h4>Posts you've commented on:</h4>
+</div>
+
+</div>
