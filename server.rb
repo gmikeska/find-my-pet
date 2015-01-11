@@ -160,7 +160,9 @@ module FindMyPet
 
 		get '/found/:id' do
 			#return specific found pet bulletin with comments
-			FoundPet.find(params[:id])
+			@info = FoundPet.find(params[:id])
+			messages = FoundMessage.where(animal_id: params['id'])
+			@messages = messages.to_json
 			erb :"found/bulletin"
 
 		end
