@@ -29,7 +29,7 @@ module FindMyPet
 				# end				
 				postst = MissingPet.all
 				@posts = postst.to_json
-				puts @posts
+				# puts @posts
 				erb :index
 			else
 			  @mission_statement = File.read('views/readins/mission statement.erb')
@@ -116,18 +116,13 @@ module FindMyPet
 		end
 
 		get '/lost' do
-		 	#view local lost animals
-		 	erb :found
+		 	#view gallery of local lost animals
+		 	erb :"missing"
 		end
 
-		get '/lost/new' do
+		get '/lost/new' do 
 		 	#form to create a new bulletin for a lost pet
-		 	erb :found
-		end
-
-		get '/lost/:id' do
-			#return specific lost animal bulletin, and comments
-			MissingPet.find(params[:id])
+		 	erb :"lost/new"
 		end
 
 		post '/lost' do
@@ -135,6 +130,11 @@ module FindMyPet
 		 	a = params
 		 	MissingPet.save!(a)
 		 	redirect to '/'
+		end
+
+		get '/lost/:id' do
+			#return specific lost animal bulletin, and comments
+			MissingPet.find(params[:id])
 		end
 
 		get '/found' do
