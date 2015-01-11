@@ -52,25 +52,35 @@ module FindMyPet
 			password = params['password']
 			confirm = params['confirm']
 			email = params['email']
+
 			if(password == confirm)
-				params['activation'] = (0...8).map { (65 + rand(26)).chr }.join
-				params.delete('confirm')
-				params.delete('radius')
-				params['street_address'] = params['address']
-				params.delete('address')
-				params['email_address'] = params['email']
-				params.delete('email')
-				a = User.new(params)
-				a.save!
+				begin
+					params['activation'] = (0...8).map { (65 + rand(26)).chr }.join
+					params.delete('confirm')
+					params.delete('radius')
+					params['street_address'] = params['address']
+					params.delete('address')
+					params['email_address'] = params['email']
+					params.delete('email')
+					a = User.new(params)
+					a.save!
+					session['user_id'] = a.id
+					redirect to "/"
+				rescue ActiveRecord::RecordInvalid
+
+					flash.now[:alert] = $!.to_s
+					erb :"auth/signup"
+				end
 				#a.send_activation
-				session['user_id'] = a.id
-				redirect to "/activation"
+				
+				
 			else
 				flash.now[:alert] = "Please confirm your password."
 				erb :"auth/signup"
 			end
 			#print success message to screen
 		end
+
 		get '/activation' do
 			if params['activation']
 				u = User.find_by(activation: params["activation"])
@@ -82,6 +92,7 @@ module FindMyPet
 			end
 			erb :"auth/activation"
 		end
+
 		get '/signin' do
 			@page_title = "Sign In! - FindMyPet"
 			
@@ -114,6 +125,38 @@ module FindMyPet
 			#return specific found pet bulletin with comments
 			erb :profile
 		end
+		post '/profile' do
+			begin
+				if params['password'] != ''
+					if params['password'] == params['confirm']
+						params.delete('confirm')
+					else
+						flash.now[:alert] = "Password entries don't match."
+						erb :profile
+					end
+				else
+					params.delete('password')
+					params.delete('confirm')
+				end
+				params.delete('radius')
+				params['street_address'] = params['address']
+				params.delete('address')
+				params['email_address'] = params['email']
+				params.delete('email')
+				params.each do |param, v|
+					@user[param] = v
+				end
+
+				@user.save
+
+				flash.now[:success] = "Your profile has been updated!"
+
+				erb :profile
+			rescue ActiveRecord::RecordInvalid
+				flash.now[:alert] = $!.to_s
+				erb :profile
+			end
+		end
 
 		get '/userinfo' do
 			user = User.find(session['user_id'])
@@ -128,7 +171,6 @@ module FindMyPet
 			@mylcomments = mylcomments.to_json
 			erb :profileview
 		end
-
 		get '/lost' do
 		 	#view gallery of local lost animals
 		 	bulletins = MissingPet.all
