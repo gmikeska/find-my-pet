@@ -116,16 +116,12 @@ module FindMyPet
 		end
 
 		get '/userinfo' do
-			user = User.find(session['user_id'])
-			@user = user.to_json
-			mylostposts = MissingPet.where(user_id: session['user_id'])
-			@mylostposts = mylostposts.to_json
-			myfoundposts = FoundPet.where(user_id: session['user_id'])
-			@myfoundposts = myfoundposts.to_json
-			myfcomments = FoundMessage.where(user_id: session['user_id'])
-			mylcomments = LostMessage.where(user_id: session['user_id'])
-			@myfcomments = myfcomments.to_json
-			@mylcomments = mylcomments.to_json
+			@user = User.find(session['user_id'])		
+			@mylostposts = MissingPet.where(user_id: session['user_id'])		
+			@myfoundposts = FoundPet.where(user_id: session['user_id'])	
+			@myfcomments = FoundMessage.where(user_id: session['user_id'])
+			@mylcomments = LostMessage.where(user_id: session['user_id'])
+		
 			erb :profileview
 		end
 
