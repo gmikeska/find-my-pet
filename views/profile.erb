@@ -1,12 +1,25 @@
-<div class="container-fluid" id="main">
 <div class="container-fluid" id="content">
-	<h2>Edit Profile</h2>
-	<div>
+		<h2>Edit Profile</h2>
+	<div class="alert alert-success" role="alert" style="display:none" id="successflash">
+	  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	  	<span class="sr-only">Error:</span>
+	  	<span id='success'>Test</span>
+	</div>
+	<form method='POST' action ='/profile'> 
 	<div class="input-group">
-	<span class="input-group-addon" id="namespan" >Name</span><input type="text" class="form-control"  aria-describedby="namespan" name="name" value="<%= @params['name']%>">
+	<span class="input-group-addon" id="namespan" >Name</span><input type="text" class="form-control"  aria-describedby="namespan" name="name" value="<%= @user.name %>">
 	</div>
 	<div class="input-group">
-	<span class="input-group-addon" id="addrspan" >Address</span><input type="text" class="form-control"  aria-describedby="addrspan" name="address" value="<%= @params['address']%>">
+	<span class="input-group-addon" id="addrspan" >Address</span><input type="text" class="form-control"  aria-describedby="addrspan" name="address" value="<%= @user.street_address %>">
+	</div>
+		<div class="input-group">
+	<span class="input-group-addon" id="cityspan" >City</span><input type="text" class="form-control"  aria-describedby="cityspan" name="city" value="<%= @params['city']%>">
+	</div>
+	<div class="input-group">
+	<span class="input-group-addon" id="statespan" >State</span><input type="text" class="form-control" size="2"  aria-describedby="statespan" name="state" value="<%= @params['state']%>">
+	</div>
+	<div class="input-group">
+	<span class="input-group-addon" id="zipcodespan" >Zip</span><input type="text" class="form-control" size="5"  aria-describedby="zipcodespan" name="zipcode" value="<%= @params['zipcode']%>">
 	</div>
 	<div class="input-group">
 	<span class="input-group-addon" id="radiusspan" >Search Radius</span><select class="form-control" aria-describedby="radiusspan" name="radius">
@@ -19,7 +32,7 @@
 	</select>
 	</div>
 	<div class="input-group" >
-	<span class="input-group-addon" id='emailspan' >Email</span><input type="text" class="form-control" aria-describedby="emailspan" id="email" name="email" value="<%= @params['email']%>">
+	<span class="input-group-addon" id='emailspan' >Email</span><input type="text" class="form-control" aria-describedby="emailspan" id="email" name="email" value="<%= @user.email_address%>">
 	</div>
 	<div class="input-group">
 	<span class="input-group-addon" id="passwordspan" >Password</span><input class="form-control" type="password" aria-describedby="passwordspan" name="password">
@@ -32,6 +45,9 @@
   <span class="sr-only">Error:</span>
   <span id='flash'>Test</span>
 </div>
+	<br>
 	<button value="submit" class="btn btn-success">Submit!</button>
-</div>
+</form>
+
+
 </div>

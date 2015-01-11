@@ -11,6 +11,15 @@
 	<span class="input-group-addon" id="addrspan" >Address</span><input type="text" class="form-control"  aria-describedby="addrspan" name="address" value="<%= @params['address']%>">
 	</div>
 	<div class="input-group">
+	<span class="input-group-addon" id="cityspan" >City</span><input type="text" class="form-control"  aria-describedby="cityspan" name="city" value="<%= @params['city']%>">
+	</div>
+	<div class="input-group">
+	<span class="input-group-addon" id="statespan" >State</span><input type="text" class="form-control" size="2"  aria-describedby="statespan" name="state" value="<%= @params['state']%>">
+	</div>
+	<div class="input-group">
+	<span class="input-group-addon" id="zipcodespan" >Zip</span><input type="text" class="form-control" size="5"  aria-describedby="zipcodespan" name="zipcode" value="<%= @params['zipcode']%>">
+	</div>
+	<div class="input-group">
 	<span class="input-group-addon" id="radiusspan" >Search Radius</span><select class="form-control" aria-describedby="radiusspan" name="radius">
 	  <option> </option>
 	  <option value='10'>10 miles</option>
@@ -27,7 +36,7 @@
 	<span class="input-group-addon" id="passwordspan" >Password</span><input class="form-control" type="password" aria-describedby="passwordspan" name="password">
 	</div>
 	<div class="input-group">
-	<span class="input-group-addon" id="confirmspan" >Password</span><input class="form-control" type="password" aria-describedby="confirmspan" name="confirm">
+	<span class="input-group-addon" id="confirmspan" >Confirm</span><input class="form-control" type="password" aria-describedby="confirmspan" name="confirm">
 	</div>
 	<div class="alert alert-danger" role="alert" style="display:none" id="alert">
   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -39,17 +48,3 @@
 </form>
 </center>
 </div>
-<script>
-
-$(document).ready(function(){
-	flash = '<%= flash[:alert] %>'
-	if(flash != '')
-	{
-		$('#flash').text(flash)
-		$('.alert').show()
-
-	}
-
-
-})
-</script>
