@@ -50,10 +50,11 @@ module FindMyPet
 
 		post '/signup' do
 			@params = params
+
 			password = params['password']
 			confirm = params['confirm']
 			email = params['email']
-
+			params.delete('password')
 			if(password == confirm)
 				begin
 					#params['activation'] = (0...8).map { (65 + rand(26)).chr }.join
@@ -67,6 +68,7 @@ module FindMyPet
 						params['email_address'] = params['email']
 						params.delete('email')
 						a = User.new(params)
+						a.password = password
 						a.save!
 						session['user_id'] = a.id
 						redirect to "/"
@@ -119,7 +121,7 @@ module FindMyPet
 		post '/signin' do
 		 #params: email, password
 		 user = User.find_by(email_address: params["email"])
-		 if user["password"] == params["password"]
+		 if user.password == params["password"]
 		 	session['user_id'] = user['id']
 		 	redirect to '/'
 		 else
