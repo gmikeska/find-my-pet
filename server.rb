@@ -135,6 +135,8 @@ module FindMyPet
 		get '/lost/:id' do
 			#return specific lost animal bulletin, and comments
 			@info = MissingPet.find(params[:id])
+			messages = LostMessage.where(animal_id: params['id'])
+			@messages = messages.to_json
 			erb :"lost/bulletin"
 		end
 
@@ -146,7 +148,7 @@ module FindMyPet
 		post '/found/new' do
 		 	#create a new bulletin for a found pet
 		 	a = params
-		 	FoundPet.save(a)
+		 	FoundPet.create!(a)
 		 	redirect to '/'
 		end
 

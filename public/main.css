@@ -108,6 +108,13 @@ body a{
 {
 	height:150px;
 }
+
+.comment
+{
+	background-color: #337AB7;
+	border-radius: 25px;
+	padding: 10px;
+}
 .mission 
 {	
 	opacity: .75;
