@@ -13,13 +13,13 @@
 	<span class="input-group-addon" id="addrspan" >Address</span><input type="text" class="form-control"  aria-describedby="addrspan" name="address" value="<%= @user.street_address %>">
 	</div>
 		<div class="input-group">
-	<span class="input-group-addon" id="cityspan" >City</span><input type="text" class="form-control"  aria-describedby="cityspan" name="city" value="<%= @params['city']%>">
+	<span class="input-group-addon" id="cityspan" >City</span><input type="text" class="form-control"  aria-describedby="cityspan" name="city" value="<%= @user.city %>">
 	</div>
 	<div class="input-group">
-	<span class="input-group-addon" id="statespan" >State</span><input type="text" class="form-control" size="2"  aria-describedby="statespan" name="state" value="<%= @params['state']%>">
+	<span class="input-group-addon" id="statespan" >State</span><input type="text" class="form-control" size="2"  aria-describedby="statespan" name="state" value="<%= @user.state %>">
 	</div>
 	<div class="input-group">
-	<span class="input-group-addon" id="zipcodespan" >Zip</span><input type="text" class="form-control" size="5"  aria-describedby="zipcodespan" name="zipcode" value="<%= @params['zipcode']%>">
+	<span class="input-group-addon" id="zipcodespan" >Zip</span><input type="text" class="form-control" size="5"  aria-describedby="zipcodespan" name="zipcode" value="<%= @user.zipcode %>">
 	</div>
 	<div class="input-group">
 	<span class="input-group-addon" id="radiusspan" >Search Radius</span><select class="form-control" aria-describedby="radiusspan" name="radius">

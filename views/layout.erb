@@ -17,7 +17,7 @@
 <h3>
 <% if @user_id %>
 
-<a href="/signout">Logout</a> | Welcome <%= @user.name %></h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a>
+<a href="/signout">Logout</a> | Welcome, <%= @user.name %>!</h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a>
 <script>
 $(document).ready(function(){
 	buildNav()
@@ -34,7 +34,7 @@ $(document).ready(function(){
 <div id='main' class="container-fluid">
 <%= yield %>
 </div>
-<div id='footer'></div>
+<div id='footer'><center>"Business info, contact us, etc."</center></div>
 </body>
 <script>
 	flash = '<%= flash[:alert] %>'

@@ -5,6 +5,7 @@ require 'json'
 require 'bcrypt'
 require 'rack-flash'
 require_relative 'config/environments.rb'
+require_relative 'lib/geokitMethods.rb'
 
 module FindMyPet
 	class Server < Sinatra::Application
@@ -59,23 +60,29 @@ module FindMyPet
 					params.delete('confirm')
 					params.delete('radius')
 					params['street_address'] = params['address']
+					point = GEO.geocode("#{params['street_address']}, #{params['city']}, #{params['state']}")
 					params.delete('address')
-					params['email_address'] = params['email']
-					params.delete('email')
-					a = User.new(params)
-					a.save!
-					session['user_id'] = a.id
-					redirect to "/"
+					if point.success
+						params['latitude'] = point.latitude
+						params['longitude'] = point.longitude 
+						params['email_address'] = params['email']
+						params.delete('email')
+						a = User.new(params)
+						a.save!
+						session['user_id'] = a.id
+						redirect to "/"
+					else
+						flash.now[:alert] = "Geocoding Error. Please contact support."
+						erb :"auth/signup"
+					end
+					
 				rescue ActiveRecord::RecordInvalid
-
 					flash.now[:alert] = $!.to_s
 					erb :"auth/signup"
 				end
-				#a.send_activation
-				
-				
+				#a.send_activation		
 			else
-				flash.now[:alert] = "Please confirm your password."
+				flash.now[:alert] = "The passwords you entered don't match. Please re-enter and confirm your password."
 				erb :"auth/signup"
 			end
 			#print success message to screen
@@ -140,13 +147,20 @@ module FindMyPet
 				end
 				params.delete('radius')
 				params['street_address'] = params['address']
+				point = GEO.geocode("#{params['street_address']}, #{params['city']}, #{params['state']}")
 				params.delete('address')
 				params['email_address'] = params['email']
 				params.delete('email')
+				if point.success
+					params['latitude'] = point.latitude
+					params['longitude'] = point.longitude
+				else
+					flash.now[:alert] = "Geocoding Error. Please contact support."
+					erb :profile
+				end
 				params.each do |param, v|
 					@user[param] = v
-				end
-
+					end
 				@user.save
 
 				flash.now[:success] = "Your profile has been updated!"
