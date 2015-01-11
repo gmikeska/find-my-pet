@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20150109150203) do
 
   create_table "found", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "name"
     t.string   "animal_type"
     t.string   "animal_breed"
     t.string   "animal_gender"
@@ -31,7 +32,6 @@ ActiveRecord::Schema.define(version: 20150109150203) do
     t.string   "chip_id"
     t.string   "other"
     t.datetime "created"
-    t.string   "name"
   end
 
   create_table "found_images", force: :cascade do |t|
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20150109150203) do
   end
 
   create_table "found_messages", force: :cascade do |t|
-    t.integer  "animal_id"
     t.integer  "user_id"
+    t.integer  "animal_id"
     t.string   "message"
     t.string   "last_location"
     t.decimal  "last_longitude"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150109150203) do
 
   create_table "lost", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "name"
     t.string   "animal_type"
     t.string   "animal_breed"
     t.string   "animal_gender"
@@ -64,7 +65,6 @@ ActiveRecord::Schema.define(version: 20150109150203) do
     t.string   "chip_id"
     t.string   "other"
     t.datetime "created"
-    t.string   "name"
   end
 
   create_table "lost_images", force: :cascade do |t|
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 20150109150203) do
   end
 
   create_table "lost_messages", force: :cascade do |t|
-    t.integer  "animal_id"
     t.integer  "user_id"
+    t.integer  "animal_id"
     t.string   "message"
     t.string   "last_location"
     t.decimal  "last_longitude"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150109150203) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string  "name"
     t.string  "email_address"
     t.string  "password"
     t.string  "street_address"
@@ -95,14 +96,16 @@ ActiveRecord::Schema.define(version: 20150109150203) do
     t.string  "phone_cell"
     t.string  "fb_account"
     t.string  "fb_token"
+    t.decimal "radius"
     t.string  "activation"
-    t.string  "name"
   end
 
   add_foreign_key "found", "users", name: "found_user_id_fkey"
   add_foreign_key "found_images", "found", column: "animal_id", name: "found_images_animal_id_fkey"
   add_foreign_key "found_messages", "found", column: "animal_id", name: "found_messages_animal_id_fkey"
+  add_foreign_key "found_messages", "users", name: "found_messages_user_id_fkey"
   add_foreign_key "lost", "users", name: "lost_user_id_fkey"
   add_foreign_key "lost_images", "lost", column: "animal_id", name: "lost_images_animal_id_fkey"
   add_foreign_key "lost_messages", "lost", column: "animal_id", name: "lost_messages_animal_id_fkey"
+  add_foreign_key "lost_messages", "users", name: "lost_messages_user_id_fkey"
 end
