@@ -201,6 +201,12 @@ module FMP
           clock_timestamp(), 'UT Area, Austin, TX', '', '', '', 
           clock_timestamp(), -97.7228306, 30.2836029);  
 
+      INSERT INTO found (user_id, animal_type, animal_breed, animal_gender, comment, is_found,
+        date_found, where_found, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
+        VALUES (1, 'Dog', 'Pit Bull', 'Female', 'young; injured paw, no collar, very friendly', TRUE, 
+          clock_timestamp(), '8100 S Memorial Dr, Tulsa, OK', '', '', '', 
+          clock_timestamp(), -95.886669, 36.134995);  
+
       -- lost_messages
       INSERT INTO lost_messages (user_id, animal_id, message, last_location, created)
         VALUES (1, 2, 'I may have seen your dog hanging out on 5th street', '5th street', clock_timestamp());
