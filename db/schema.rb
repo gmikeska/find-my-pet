@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150109150203) do
 
   create_table "found_messages", force: :cascade do |t|
     t.integer  "animal_id"
+    t.integer  "user_id"
     t.string   "message"
     t.string   "last_location"
     t.decimal  "last_longitude"
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(version: 20150109150203) do
 
   create_table "lost_messages", force: :cascade do |t|
     t.integer  "animal_id"
+    t.integer  "user_id"
     t.string   "message"
     t.string   "last_location"
     t.decimal  "last_longitude"

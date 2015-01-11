@@ -104,6 +104,10 @@ body a{
 	max-height: 131px;
 
 }
+.bltn-grid-buffer
+{
+	height:150px;
+}
 .mission 
 {	
 	opacity: .75;

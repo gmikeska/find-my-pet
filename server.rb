@@ -125,10 +125,10 @@ module FindMyPet
 		 	erb :"lost/new"
 		end
 
-		post '/lost' do
+		post '/lost/new' do
 		 	#create a new bulletin for a lost pet
 		 	a = params
-		 	MissingPet.save!(a)
+		 	MissingPet.create!(a)
 		 	redirect to '/'
 		end
 
@@ -143,7 +143,7 @@ module FindMyPet
 		 	erb :found
 		end
 
-		post '/found' do
+		post '/found/new' do
 		 	#create a new bulletin for a found pet
 		 	a = params
 		 	FoundPet.save(a)
@@ -163,7 +163,7 @@ module FindMyPet
 
 		end
 
-		post '/message' do
+		post 'bulletin/:id/message' do
 		 	#post new discussion message to a lost/found bulletin
 		 	#params: post id, user id
 		 end
