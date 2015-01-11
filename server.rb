@@ -151,14 +151,13 @@ module FindMyPet
 
 				flash.now[:success] = "Your profile has been updated!"
 
-<<<<<<< HEAD
 				erb :profile
 			rescue ActiveRecord::RecordInvalid
 				flash.now[:alert] = $!.to_s
 				erb :profile
 			end
 		end
-=======
+
 		get '/userinfo' do
 			@user = User.find(session['user_id'])		
 			@mylostposts = MissingPet.where(user_id: session['user_id'])		
@@ -168,8 +167,6 @@ module FindMyPet
 		
 			erb :profileview
 		end
-
->>>>>>> 6d68ca43c06a494c2283c90bc6604c9df5c4902e
 		get '/lost' do
 		 	#view gallery of local lost animals
 		 	bulletins = MissingPet.all
