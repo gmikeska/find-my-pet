@@ -183,14 +183,14 @@ module FMP
         VALUES ('Greg M','greg@bitcoin.com','1234', 'Town Lake', 'Austin', 'TX','', -97.7181049, 30.2476846, 4);
       
       -- lost
-      INSERT INTO lost (user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
+      INSERT INTO lost (name,user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
         date_lost, where_lost, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
-        VALUES (1, 'Dog', 'German Shorthaired Pointer', 'Male', 'friendly, orange collar', TRUE, 
+        VALUES ('Fido', 1, 'Dog', 'German Shorthaired Pointer', 'Male', 'friendly, orange collar', TRUE, 
           clock_timestamp(), 'UT, Austin, TX', 'Joes Dog Chips', 'ABCD9876', 'White, brown spots', 
           clock_timestamp(), -97.7228306, 30.2836029);
-      INSERT INTO lost (user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
+      INSERT INTO lost (name, user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
         date_lost, where_lost, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
-        VALUES (2, 'Cat', 'White Cat', 'Female', 'fearsome, attacks on command', TRUE, 
+        VALUES ('Fluffy',2, 'Cat', 'White Cat', 'Female', 'fearsome, attacks on command', TRUE, 
           clock_timestamp(), '6th Street, Austin, TX', '', '', '', 
           clock_timestamp(), -97.6669354, 30.2020868);  
       
