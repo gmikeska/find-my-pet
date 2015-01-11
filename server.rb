@@ -173,16 +173,12 @@ module FindMyPet
 		end
 
 		get '/userinfo' do
-			user = User.find(session['user_id'])
-			@user = user.to_json
-			mylostposts = MissingPet.where(user_id: session['user_id'])
-			@mylostposts = mylostposts.to_json
-			myfoundposts = FoundPet.where(user_id: session['user_id'])
-			@myfoundposts = myfoundposts.to_json
-			myfcomments = FoundMessage.where(user_id: session['user_id'])
-			mylcomments = LostMessage.where(user_id: session['user_id'])
-			@myfcomments = myfcomments.to_json
-			@mylcomments = mylcomments.to_json
+			@user = User.find(session['user_id'])		
+			@mylostposts = MissingPet.where(user_id: session['user_id'])		
+			@myfoundposts = FoundPet.where(user_id: session['user_id'])	
+			@myfcomments = FoundMessage.where(user_id: session['user_id'])
+			@mylcomments = LostMessage.where(user_id: session['user_id'])
+		
 			erb :profileview
 		end
 		get '/lost' do
@@ -246,10 +242,27 @@ module FindMyPet
 
 		end
 
-		post 'bulletin/:id/message' do
+		post '/found/:id/message' do
 		 	#post new discussion message to a lost/found bulletin
 		 	#params: post id, user id
+			message = {}
+		 	message['message'] = params['message']
+		 	message['animal_id'] = params['id']
+		 	message['user_id'] = session['user_id']
+		 	FoundMessage.create!(message)
+		 	redirect to '/found/'+ params['id']
 		 end
+
+		post '/lost/:id/message' do
+		 	#post new discussion message to a lost/found bulletin
+		 	#params: post id, user id
+		 	message = {}
+		 	message['message'] = params['message']
+		 	message['animal_id'] = params['id']
+		 	message['user_id'] = session['user_id']
+		 	LostMessage.create!(message)
+		 	redirect to '/lost/'+ params['id']
+		end
 
 	end
 end

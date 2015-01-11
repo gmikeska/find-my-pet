@@ -68,7 +68,8 @@ module FMP
         phone_home VARCHAR,
         phone_cell VARCHAR,
         fb_account VARCHAR,
-        fb_token VARCHAR
+        fb_token VARCHAR,
+        radius NUMERIC
       );
 
       --##################################################################################
@@ -172,24 +173,24 @@ module FMP
 
     db.exec <<-SQL
       -- users
-      INSERT INTO users (email_address, password, street_address, city, state, zipcode, longitude, latitude)
-        VALUES ('greghorne@hotmail.com','1234', '1116 S Tamarack Ave', 'Broken Arrow', 'OK','74012', -95.7932008, 36.05826630000001);
+      INSERT INTO users (name, email_address, password, street_address, city, state, zipcode, longitude, latitude, radius)
+        VALUES ('Greg H','greghorne@hotmail.com','1234', '1116 S Tamarack Ave', 'Broken Arrow', 'OK','74012', -95.7932008, 36.05826630000001, 5);
 
-      INSERT INTO users (email_address, password, street_address, city, state, zipcode,longitude, latitude)
-        VALUES ('julia@pets.com','1234', '716 Congress Ave', 'Austin', 'TX','', -97.7475944, 30.2552373);
+      INSERT INTO users (name, email_address, password, street_address, city, state, zipcode,longitude, latitude, radius)
+        VALUES ('Julia','julia@pets.com','1234', '716 Congress Ave', 'Austin', 'TX','', -97.7475944, 30.2552373, 6);
 
-      INSERT INTO users (email_address, password, street_address, city, state, zipcode,longitude, latitude)
-        VALUES ('greg@bitcoin.com','1234', 'Town Lake', 'Austin', 'TX','', -97.7181049, 30.2476846);
+      INSERT INTO users (name, email_address, password, street_address, city, state, zipcode,longitude, latitude, radius)
+        VALUES ('Greg M','greg@bitcoin.com','1234', 'Town Lake', 'Austin', 'TX','', -97.7181049, 30.2476846, 4);
       
       -- lost
-      INSERT INTO lost (user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
+      INSERT INTO lost (name,user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
         date_lost, where_lost, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
-        VALUES (1, 'Dog', 'German Shorthaired Pointer', 'Male', 'friendly, orange collar', TRUE, 
+        VALUES ('Fido', 1, 'Dog', 'German Shorthaired Pointer', 'Male', 'friendly, orange collar', TRUE, 
           clock_timestamp(), 'UT, Austin, TX', 'Joes Dog Chips', 'ABCD9876', 'White, brown spots', 
           clock_timestamp(), -97.7228306, 30.2836029);
-      INSERT INTO lost (user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
+      INSERT INTO lost (name, user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
         date_lost, where_lost, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
-        VALUES (2, 'Cat', 'White Cat', 'Female', 'fearsome, attacks on command', TRUE, 
+        VALUES ('Fluffy',2, 'Cat', 'White Cat', 'Female', 'fearsome, attacks on command', TRUE, 
           clock_timestamp(), '6th Street, Austin, TX', '', '', '', 
           clock_timestamp(), -97.6669354, 30.2020868);  
       
@@ -201,12 +202,12 @@ module FMP
           clock_timestamp(), -97.7228306, 30.2836029);  
 
       -- lost_messages
-      INSERT INTO lost_messages (animal_id, message, last_location, created)
-        VALUES (2, 'I may have seen your dog hanging out on 5th street', '5th street', clock_timestamp());
+      INSERT INTO lost_messages (user_id, animal_id, message, last_location, created)
+        VALUES (1, 2, 'I may have seen your dog hanging out on 5th street', '5th street', clock_timestamp());
       
       -- found messages
-      INSERT INTO found_messages (animal_id, message, last_location, created)
-        VALUES (1, 'Does the pit bull have a mark above left eye?', '', clock_timestamp());
+      INSERT INTO found_messages (user_id, animal_id, message, last_location, created)
+        VALUES (2, 1, 'Does the pit bull have a mark above left eye?', '', clock_timestamp());
       -- lost_images
       INSERT INTO lost_images (animal_id, image_url) VALUES (1, 'http://2.bp.blogspot.com/_YGZsB8JQLfQ/S9OqhNSsuLI/AAAAAAAAA6k/631FUM5efM0/s1600/Greater+Swiss+Mountain_003.jpg')
     SQL

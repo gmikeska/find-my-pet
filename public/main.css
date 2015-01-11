@@ -117,6 +117,13 @@ body a{
 	border-radius: 25px;
 	padding: 10px;
 }
+
+.commentbox
+{
+	height: 100px;
+	width: 400px;
+	color: black;
+}
 .mission 
 {	
 	opacity: .75;
