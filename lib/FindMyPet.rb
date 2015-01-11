@@ -173,14 +173,14 @@ module FMP
 
     db.exec <<-SQL
       -- users
-      INSERT INTO users (email_address, password, street_address, city, state, zipcode, longitude, latitude, radius)
-        VALUES ('greghorne@hotmail.com','1234', '1116 S Tamarack Ave', 'Broken Arrow', 'OK','74012', -95.7932008, 36.05826630000001, 5);
+      INSERT INTO users (name, email_address, password, street_address, city, state, zipcode, longitude, latitude, radius)
+        VALUES ('Greg H','greghorne@hotmail.com','1234', '1116 S Tamarack Ave', 'Broken Arrow', 'OK','74012', -95.7932008, 36.05826630000001, 5);
 
-      INSERT INTO users (email_address, password, street_address, city, state, zipcode,longitude, latitude, radius)
-        VALUES ('julia@pets.com','1234', '716 Congress Ave', 'Austin', 'TX','', -97.7475944, 30.2552373, 6);
+      INSERT INTO users (name, email_address, password, street_address, city, state, zipcode,longitude, latitude, radius)
+        VALUES ('Julia','julia@pets.com','1234', '716 Congress Ave', 'Austin', 'TX','', -97.7475944, 30.2552373, 6);
 
-      INSERT INTO users (email_address, password, street_address, city, state, zipcode,longitude, latitude, radius)
-        VALUES ('greg@bitcoin.com','1234', 'Town Lake', 'Austin', 'TX','', -97.7181049, 30.2476846, 4);
+      INSERT INTO users (name, email_address, password, street_address, city, state, zipcode,longitude, latitude, radius)
+        VALUES ('Greg M','greg@bitcoin.com','1234', 'Town Lake', 'Austin', 'TX','', -97.7181049, 30.2476846, 4);
       
       -- lost
       INSERT INTO lost (user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
