@@ -228,14 +228,26 @@ module FindMyPet
 
 		end
 
-		post 'found/:id/message' do
+		post '/found/:id/message' do
 		 	#post new discussion message to a lost/found bulletin
 		 	#params: post id, user id
+			message = {}
+		 	message['message'] = params['message']
+		 	message['animal_id'] = params['id']
+		 	message['user_id'] = session['user_id']
+		 	FoundMessage.create!(message)
+		 	redirect to '/found/'+ params['id']
 		 end
 
-		post 'lost/:id/message' do
+		post '/lost/:id/message' do
 		 	#post new discussion message to a lost/found bulletin
 		 	#params: post id, user id
+		 	message = {}
+		 	message['message'] = params['message']
+		 	message['animal_id'] = params['id']
+		 	message['user_id'] = session['user_id']
+		 	LostMessage.create!(message)
+		 	redirect to '/lost/'+ params['id']
 		end
 
 	end

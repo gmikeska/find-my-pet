@@ -202,12 +202,12 @@ module FMP
           clock_timestamp(), -97.7228306, 30.2836029);  
 
       -- lost_messages
-      INSERT INTO lost_messages (animal_id, message, last_location, created)
-        VALUES (2, 'I may have seen your dog hanging out on 5th street', '5th street', clock_timestamp());
+      INSERT INTO lost_messages (user_id, animal_id, message, last_location, created)
+        VALUES (1, 2, 'I may have seen your dog hanging out on 5th street', '5th street', clock_timestamp());
       
       -- found messages
-      INSERT INTO found_messages (animal_id, message, last_location, created)
-        VALUES (1, 'Does the pit bull have a mark above left eye?', '', clock_timestamp());
+      INSERT INTO found_messages (user_id, animal_id, message, last_location, created)
+        VALUES (2, 1, 'Does the pit bull have a mark above left eye?', '', clock_timestamp());
       -- lost_images
       INSERT INTO lost_images (animal_id, image_url) VALUES (1, 'http://2.bp.blogspot.com/_YGZsB8JQLfQ/S9OqhNSsuLI/AAAAAAAAA6k/631FUM5efM0/s1600/Greater+Swiss+Mountain_003.jpg')
     SQL
