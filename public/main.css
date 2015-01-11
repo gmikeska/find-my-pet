@@ -61,6 +61,8 @@ body a{
 #content
 {
 	background-color: #337AB7;
+	border-radius: 25px;
+	margin-bottom: 1px;
 
 }
 .form-control

@@ -17,20 +17,43 @@
 <h3>
 <% if @user_id %>
 
-<a href="/signout">Logout</a> | Welcome <%= @user.name %></h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a></div>
+<a href="/signout">Logout</a> | Welcome <%= @user.name %></h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a>
 <script>
 $(document).ready(function(){
 	buildNav()
+
+
 })
 </script>
+
 <% else %>
-<a href="/signin">Login</a> | <a href="/signup">Signup</a></h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a></div>
+<a href="/signin">Login</a> | <a href="/signup">Signup</a></h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a>
 
 <% end %>
-
+</div>
+<div id='main' class="container-fluid">
 <%= yield %>
+</div>
 <div id='footer'></div>
 </body>
+<script>
+	flash = '<%= flash[:alert] %>'
+	success = '<%= flash[:success] %>'
+	
+	if(flash != '')
+	{
+		$('#flash').text(flash)
+		$('.alert-danger').show()
+
+	}
+
+	if(success != '')
+	{
+		$('#success').text(success)
+		$('.alert-success').show()
+
+	}
+</script>
 
 </html>
 

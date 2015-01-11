@@ -1,47 +1,45 @@
-<div class="container-fluid" id="main">
-<form class='newlostpost' method="POST" action:"/lost/new">
-<div>
-	<h2>Enter The Following Information:</h2> 
-	<div>
 
-	<div class="input-group">
-	<span class="input-group-addon" id='petnamespan' >Name</span><input class="form-control" aria-describedby="petnamespan" id="name" name="name">
-	</div>
+<div class="container-fluid" id="content">
+	<form class='newlostpost' method="POST" action:"/lost/new">
 
-	<div class="input-group">
-	<span class="input-group-addon" id="breedspan" >Breed</span><input class="form-control" aria-describedby="breedspan" name="animal_breed">
-	</div>
+		<h2>Enter The Following Information:</h2> 
+		<div class="input-group">
+		<span class="input-group-addon" id='petnamespan' >Name</span><input class="form-control" aria-describedby="petnamespan" id="name" name="name">
+		</div>
 
-	<div class="input-group">
-	<span class="input-group-addon" id="genderspan" >Gender</span><input class="form-control" aria-describedby="genderspan" name="animal_gender">
-	</div>
+		<div class="input-group">
+		<span class="input-group-addon" id="breedspan" >Breed</span><input class="form-control" aria-describedby="breedspan" name="animal_breed">
+		</div>
 
-	<div class="input-group">
-	<span class="input-group-addon" id="commentspan" >Comments/Description</span><input class="form-control" aria-describedby="commentsspan" name="comment">
-	</div>
+		<div class="input-group">
+		<span class="input-group-addon" id="genderspan" >Gender</span><input class="form-control" aria-describedby="genderspan" name="animal_gender">
+		</div>
 
-	<div class="input-group">
-	<span class="input-group-addon" id="datespan" >Date lost</span><input class="form-control" aria-describedby="datespan" name="date_lost">
-	</div>
+		<div class="input-group">
+		<span class="input-group-addon" id="commentspan" >Comments/Description</span><input class="form-control" aria-describedby="commentsspan" name="comment">
+		</div>
 
-	<div class="input-group">
-	<span class="input-group-addon" id="locationspan" >Last seen at</span><input class="form-control" aria-describedby="locationspan" name="where_lost">
-	</div>
-	
-	<div class="input-group">
-	<span class="input-group-addon" id="chipmanspan" >Chip manufacturer</span><input class="form-control" aria-describedby="chipmanspan" name="chip_manufacturer">
-	</div>
+		<div class="input-group">
+		<span class="input-group-addon" id="datespan" >Date lost</span><input class="form-control" aria-describedby="datespan" name="date_lost">
+		</div>
 
-	<div class="input-group">
-	<span class="input-group-addon" id="chipidspan" >Chip ID</span><input class="form-control" aria-describedby="chipidspan" name="chip_id">
-	</div>
+		<div class="input-group">
+		<span class="input-group-addon" id="locationspan" >Last seen at</span><input class="form-control" aria-describedby="locationspan" name="where_lost">
+		</div>
+		
+		<div class="input-group">
+		<span class="input-group-addon" id="chipmanspan" >Chip manufacturer</span><input class="form-control" aria-describedby="chipmanspan" name="chip_manufacturer">
+		</div>
 
-	<div class="alert alert-danger" role="alert" style="display:none" id="alert">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Error:</span>
-  <span id='flash'>Test</span>
-</div>
-	<button type="submit" value="submit" class="btn btn-success">Submit!</button>
+		<div class="input-group">
+		<span class="input-group-addon" id="chipidspan" >Chip ID</span><input class="form-control" aria-describedby="chipidspan" name="chip_id">
+		</div>
+
+		<div class="alert alert-danger" role="alert" style="display:none" id="alert">
+	  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	  <span class="sr-only">Error:</span>
+	  <span id='flash'>Test</span>
 	</div>
-</form>
+		<button type="submit" value="submit" class="btn btn-success">Submit!</button>
+	</form>
 </div>
