@@ -176,5 +176,31 @@ body a{
    color:white;
 }
 
+/* NAV BAR CUSTOM STYLING SO THAT IT STOPS BEING SO UGLY! */
+.navbar-default
+{
+color: #fff;
+background-color: #5cb85c;
+border-color: #4cae4c;
+}
 
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus
+{
+	background-color:#449D44;
+	color:#fff;
+}
+
+.navbar-default .navbar-nav>li>a
+{
+color: #fff;
+}
+.navbar-default .navbar-nav>li>a:hover
+{
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.5),
+		-1px 1px 1px rgba(0,0,0,.5),
+		1px -1px 1px rgba(0,0,0,.5),
+		-1px -1px 1px rgba(0,0,0,.5);
+	background-color: #69d369;
+}
 

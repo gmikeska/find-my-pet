@@ -18,6 +18,11 @@
 <% if @user_id %>
 
 <a href="/signout">Logout</a> | Welcome <%= @user.name %></h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a></div>
+<script>
+$(document).ready(function(){
+	buildNav()
+})
+</script>
 <% else %>
 <a href="/signin">Login</a> | <a href="/signup">Signup</a></h3></div><a href='/'><H1 id="title">Bring Spot Home</H1></a></div>
 
@@ -26,5 +31,6 @@
 <%= yield %>
 <div id='footer'></div>
 </body>
+
 </html>
 
