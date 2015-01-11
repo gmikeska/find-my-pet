@@ -19,6 +19,7 @@ gem 'sinatra-contrib', '~> 1.4.2'
 gem 'activerecord'
 gem 'active_record_tasks'
 gem 'rack-flash3'
+gem 'geokit'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
