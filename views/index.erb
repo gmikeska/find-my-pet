@@ -1,5 +1,5 @@
 <%= @mission_statement %>
-<div class="bulletin-box"></div>
+
 	
 	
 <script>
@@ -8,7 +8,7 @@
 $(document).ready(function(){
 	var print_bulletins = function (posts, pics){
 		_.each(posts,function(post){
-		$('.bulletin-box').append(lostBulletin(post))
+		$('#main').append(lostBulletin(post))
 			})
 	}
 	//print posts!

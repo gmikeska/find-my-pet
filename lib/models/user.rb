@@ -35,11 +35,33 @@ module FindMyPet
 			GEO.getWithinRadius(self.radius, self.longitude, self.latitude, tablename)
 
 		end
+		def distance_to(target)
+			a = Geokit::LatLng.new(self.longitude, self.latitude)
+			b = Geokit::LatLng.new(target.longitude, target.latitude)
+			distance = a.distance_to(b)
+
+		end
 		def local_alert (type, params)
+			drop = ['id', 'user_id', 'longitude', 'latitude', 'is_lost', 'other', 'created']
+			label = {}
+			label['where_lost'] = 'Location'
+			label['animal_gender'] = 'Gender'
+			label['animal_type'] = 'Species'
+			label['animal_breed'] = 'Breed'
 			subject = "New '#{type}' alert in your area - Bring Spot Home"
 			message = "Dear #{self.name},\nThere is a new #{type} alert in your area.\nHere are the details:\n"
 			params.keys.each do |k|
-				message = message+k+":"+params[k]+"\n"
+				if(!drop.include?(k) && !label[k])
+					key = k.gsub('_',' ')
+					keys = key.split(' ')
+					keys.each do |w|
+						w.capitalize!
+					end
+					key = keys.join(' ')
+					message = "#{message} #{key}: #{params[k]}\n"
+				elsif(label[k])
+					message = "#{message} #{label[k]}: #{params[k]}\n"
+				end
 			end
 			self.send_email(subject, message)
 		end

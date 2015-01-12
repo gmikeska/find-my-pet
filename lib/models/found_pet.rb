@@ -3,7 +3,7 @@ module FindMyPet
     self.table_name = 'found'
 		belongs_to :user #User relationship would be the user that found the animal.
 		def local_users
-			GEO.getWithinRadius(self.radius, self.longitude, self.latitude, "users")
+			GEO.getWithinRadius(50, self.longitude, self.latitude, User)
 		end
 	end
 end

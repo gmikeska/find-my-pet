@@ -5,7 +5,7 @@ module FindMyPet
 		has_many :lost_images, foreign_key: 'animal_id'
 		has_many :lost_messages
 		def local_users
-			GEO.getWithinRadius(self.radius, self.longitude, self.latitude, "users")
+			GEO.getWithinRadius(50, self.longitude, self.latitude, User)
 		end
 	end
 end
