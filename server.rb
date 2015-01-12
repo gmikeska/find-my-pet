@@ -48,9 +48,17 @@ module FindMyPet
 				end	
 			else
 			  @mission_statement = File.read('views/readins/mission statement.erb')
-				postst = MissingPet.all
-				@posts = postst.to_json
-			 	@mission_statement = File.read('views/readins/mission statement.erb')
+				@posts = MissingPet.all.as_json
+					@posts.each do |p|
+					images = LostImage.where(animal_id: p['id'])
+					image = images.first
+					if image
+						p["picurl"] = image["image_url"]
+					else 
+						p["picurl"] = "http://www.clker.com/cliparts/3/7/6/d/1256186461796715642question-mark-icon.svg.hi.png"
+					end
+					end
+				@posts = @posts.to_json
 
 				erb :index, :locals=> {ms: @mission_statement}
 			end
