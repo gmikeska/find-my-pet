@@ -15,28 +15,32 @@ module FindMyPet
 		  end
 
 		before do
-			if session['user_id']
-				@user_id = session['user_id']
-				@user = User.find(@user_id)
+			begin
+				if session['user_id']
+					@user_id = session['user_id']
+					@user = User.find(@user_id)
+				end
+			rescue ActiveRecord::RecordNotFound
+				session.clear
+				redirect to '/'
 			end
 		 end
 
 		get '/' do
 			if session['user_id']
-				# if @user.activation
-				# 	erb :"auth/activation"
-				# else
-				# 	erb :home
-				# end				
-				postst = MissingPet.all
-				@posts = postst.to_json
-				# puts @posts
-				erb :index
+				if @user.activation
+					erb :"auth/activation"
+				else		
+					postst = MissingPet.all
+					@posts = postst.to_json
+					# puts @posts
+					erb :index
+				end	
 			else
-			  @mission_statement = File.read('views/readins/mission statement.erb')
+			  	@mission_statement = File.read('views/readins/mission statement.erb')
 				postst = MissingPet.all
 				@posts = postst.to_json
-			  @mission_statement = File.read('views/readins/mission statement.erb')
+			 	@mission_statement = File.read('views/readins/mission statement.erb')
 
 				erb :index, :locals=> {ms: @mission_statement}
 			end
@@ -57,7 +61,7 @@ module FindMyPet
 			params.delete('password')
 			if(password == confirm)
 				begin
-					#params['activation'] = (0...8).map { (65 + rand(26)).chr }.join
+					params['activation'] = (0...8).map { (65 + rand(26)).chr }.join
 					params.delete('confirm')
 					params['street_address'] = params['address']
 					point = GEO.geocode("#{params['street_address']}, #{params['city']}, #{params['state']}")
@@ -71,6 +75,7 @@ module FindMyPet
 						a.password = password
 						a.save!
 						session['user_id'] = a.id
+						a.send_activation
 						redirect to "/"
 					else
 						flash.now[:alert] = "Geocoding Error. Please contact support."
@@ -81,7 +86,7 @@ module FindMyPet
 					flash.now[:alert] = $!.to_s
 					erb :"auth/signup"
 				end
-				#a.send_activation		
+					
 			else
 				flash.now[:alert] = "The passwords you entered don't match. Please re-enter and confirm your password."
 				erb :"auth/signup"
@@ -119,14 +124,16 @@ module FindMyPet
 		end
 
 		post '/signin' do
-		 #params: email, password
-		 user = User.find_by(email_address: params["email"])
-		 if user.password == params["password"]
-		 	session['user_id'] = user['id']
-		 	redirect to '/'
-		 else
-		 	redirect to '/signin'
-		 end
+			#params: email, password
+			user = User.find_by(email_address: params["email"])
+			if(user != nil && user.password == params["password"])
+
+				session['user_id'] = user['id']
+				redirect to '/'
+			else
+				flash.now[:alert] = "Email address not found or password is incorrect. Please try again."
+				erb :"auth/signin"
+			end
 		end
 
 		get '/profile' do
@@ -183,7 +190,7 @@ module FindMyPet
 		end
 		get '/lost' do
 		 	#view gallery of local lost animals
-		 	@bulletins = @user.within_radius('lost').to_json
+		 	@bulletins = @user.within_radius(MissingPet).to_json
 		 	puts @bulletins
 		 	erb :missing
 		end
@@ -211,7 +218,8 @@ module FindMyPet
 
 		get '/found' do
 		 	#create a new bulletin for a found pet
-		 	bulletins = @user.within_radius('found')
+		 	bulletins = @user.within_radius(FoundPet)
+	 	
 		 	bulletins.each{ |b|
 		 		if b['name'] == nil 
 		 			b['name'] = 'unknown'
@@ -224,7 +232,12 @@ module FindMyPet
 		post '/found/new' do
 		 	#create a new bulletin for a found pet
 		 	a = params
-		 	FoundPet.create!(a)
+		 	pet = FoundPet.create!(a)
+		 	point = GEO.geocode(pet.where_found)
+		 	pet.longitude = point.longitude
+		 	pet.latitude = point.latitude
+		 	pet.save!
+		 	@users = GEO.getWithinRadius(50, point.longitude, point.latitude, 'users')
 		 	redirect to '/'
 		end
 

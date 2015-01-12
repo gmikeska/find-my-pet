@@ -9,7 +9,7 @@ module GEO
     Geokit::Geocoders::GoogleGeocoder.geocode address
   end
 
-  def self.getWithinRadius radius, myLongitude, myLatitude, modelObject
+  def self.getWithinRadius radius, myLongitude, myLatitude, tablename
 
     # Description: getWithinRadius
     # - Given a location and radius (miles), find all records in a table that are within
@@ -31,12 +31,14 @@ module GEO
     # GEO::getWithinRadius(5, -97.7181049, 30.2476846, 'lost', 'findmypet')
     #
 
-    
-    results = modelObject.all
+    db = PG.connect(host: 'localhost', dbname: 'findmypet')
+
+    sql = "SELECT * FROM #{tablename}"
+    results = db.exec(sql)
 
     resultsArray = Array.new
 
-    if (results.count == nil)  
+    if (results.count <= 0)  
       
     else
       resultsArray = Array.new    # return array
@@ -45,7 +47,7 @@ module GEO
       results.each do |result|
         # puts "(x, y): " + "#{result['where_longitude']}" + ", " + "#{result['where_latitude']}"
 
-        theirLocation = Geokit::LatLng.new("#{result.longitude}", "#{result.latitude}")
+        theirLocation = Geokit::LatLng.new("#{result['where_longitude']}", "#{result['where_latitude']}")
         distance = myLocation.distance_to(theirLocation)
 
         #puts "Distance: " + distance.to_s

@@ -93,8 +93,8 @@ module FMP
         is_lost BOOLEAN,
         date_lost TIMESTAMP,
         where_lost VARCHAR,
-        where_longitude NUMERIC,
-        where_latitude NUMERIC,
+        longitude NUMERIC,
+        latitude NUMERIC,
         chip_manufacturer VARCHAR,
         chip_id VARCHAR,
         other VARCHAR,
@@ -115,8 +115,8 @@ module FMP
         is_found BOOLEAN,
         date_found TIMESTAMP,
         where_found VARCHAR,
-        where_longitude NUMERIC,
-        where_latitude NUMERIC,
+        longitude NUMERIC,
+        latitude NUMERIC,
         chip_manufacturer VARCHAR,
         chip_id VARCHAR,
         other VARCHAR,
@@ -188,25 +188,25 @@ module FMP
         VALUES ('Greg M','greg@bitcoin.com','#{pwd}', 'Town Lake', 'Austin', 'TX','', -97.7181049, 30.2476846, 10);")
      db.exec <<-SQL 
       INSERT INTO lost (name,user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
-        date_lost, where_lost, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
+        date_lost, where_lost, chip_manufacturer, chip_id, other, created, longitude, latitude)
         VALUES ('Fido', 1, 'Dog', 'German Shorthaired Pointer', 'Male', 'friendly, orange collar', TRUE, 
           clock_timestamp(), 'UT, Austin, TX', 'Joes Dog Chips', 'ABCD9876', 'White, brown spots', 
           clock_timestamp(), -97.7228306, 30.2836029);
       INSERT INTO lost (name, user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
-        date_lost, where_lost, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
+        date_lost, where_lost, chip_manufacturer, chip_id, other, created, longitude, latitude)
         VALUES ('Fluffy',2, 'Cat', 'White Cat', 'Female', 'fearsome, attacks on command', TRUE, 
           clock_timestamp(), '6th Street, Austin, TX', '', '', '', 
           clock_timestamp(), -97.6669354, 30.2020868);  
       
       -- found
       INSERT INTO found (user_id, animal_type, animal_breed, animal_gender, comment, is_found,
-        date_found, where_found, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
+        date_found, where_found, chip_manufacturer, chip_id, other, created, longitude, latitude)
         VALUES (1, 'Dog', 'Pit Bull', 'Female', 'young; injured paw, no collar, very friendly', TRUE, 
           clock_timestamp(), 'UT Area, Austin, TX', '', '', '', 
           clock_timestamp(), -97.7228306, 30.2836029);  
 
       INSERT INTO found (user_id, animal_type, animal_breed, animal_gender, comment, is_found,
-        date_found, where_found, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
+        date_found, where_found, chip_manufacturer, chip_id, other, created, longitude, latitude)
         VALUES (1, 'Dog', 'Pit Bull', 'Female', 'young; injured paw, no collar, very friendly', TRUE, 
           clock_timestamp(), '8100 S Memorial Dr, Tulsa, OK', '', '', '', 
           clock_timestamp(), -95.886669, 36.134995);  
