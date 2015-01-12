@@ -39,7 +39,7 @@ module GEO
       
     else
       resultsArray = Array.new    # return array
-      myLocation = Geokit::LatLng.new(myLatitude myLongitude)
+      myLocation = Geokit::LatLng.new(myLatitude, myLongitude)
 
       results.each do |result|
         # puts "(x, y): " + "#{result['where_longitude']}" + ", " + "#{result['where_latitude']}"
