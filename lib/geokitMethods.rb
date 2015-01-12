@@ -58,7 +58,7 @@ module GEO
       end
     end
     # puts resultsArray
-    # puts "-----"
+    puts "-----"
     return resultsArray
 
   end
