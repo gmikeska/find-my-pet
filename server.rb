@@ -203,7 +203,7 @@ module FindMyPet
 		get '/lost/:id' do
 			#return specific lost animal bulletin, and comments
 			@info = MissingPet.find(params[:id])
-			messages = LostMessage.includes(:user).where(animal_id: params['id'])
+			messages = LostMessage.joins(:user).where(animal_id: params['id'])
 			@messages = messages.to_json
 			puts @messages
 			erb :"lost/bulletin"
@@ -211,9 +211,9 @@ module FindMyPet
 
 		get '/found' do
 		 	#create a new bulletin for a found pet
-		 	@bulletins = @user.within_radius('found').to_json
-		 	@bulletins.each{ |b|
-		 		if b.name == nil 
+		 	bulletins = @user.within_radius('found')
+		 	bulletins.each{ |b|
+		 		if b['name'] == nil 
 		 			b['name'] = 'unknown'
 		 		end
 		 	}
