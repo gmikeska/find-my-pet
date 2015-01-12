@@ -9,7 +9,7 @@
 <p>Lost at/last seen at: <%= @info['where_lost'] %></p>
 <p>Chip manufacturer: <%= @info['chip_manufacturer'] %></p>
 <p>Chip id: <%= @info['chip_id'] %></p>
-</div>
+
 
 <div class="comments col-md-12"><p>Add a new comment:</p><form method="post" action="<%= @info.id %>/message">
 <textarea class="commentbox" name="message"></textarea><br>
@@ -17,7 +17,7 @@
 </form>
 <h4>Replies</h4>
 </div>
-
+</div>
 </div>
 
 <script>
