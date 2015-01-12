@@ -10,14 +10,14 @@
 <p>Chip manufacturer: <%= @info['chip_manufacturer'] %></p>
 <p>Chip id: <%= @info['chip_id'] %></p>
 
-</div>
+
 <div class="comments col-md-12">
 <h4>Replies</h4><p>Add a new comment:</p><form method="post" action="<%= @info.id %>/message">
 <textarea class="commentbox" name="message"></textarea><br>
 <input type="submit">
 </form>
 </div>
-
+</div>
 </div>
 
 <script>
