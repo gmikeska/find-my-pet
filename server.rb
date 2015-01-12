@@ -222,7 +222,17 @@ module FindMyPet
 		post '/lost/new' do
 		 	#create a new bulletin for a lost pet
 		 	a = params
-		 	MissingPet.create!(a)
+		 	pet = MissingPet.create!(a)
+		 	point = GEO.geocode(pet.where_lost)
+		 	pet.longitude = point.longitude
+		 	pet.latitude = point.latitude
+		 	pet.save!
+		 	local_users = pet.local_users
+		 	local_users.each do |user|
+		 		if user.distance_to(pet) <= user.radius
+		 			user.local_alert("Lost Pet", pet.as_json)
+		 		end
+		 	end
 		 	redirect to '/'
 		end
 
@@ -266,7 +276,12 @@ module FindMyPet
 		 	pet.longitude = point.longitude
 		 	pet.latitude = point.latitude
 		 	pet.save!
-		 	@users = GEO.getWithinRadius(50, point.longitude, point.latitude, 'users')
+		 	local_users = pet.local_users
+		 	local_users.each do |user|
+		 		if user.distance_to(pet) <= user.radius
+		 			user.local_alert("Found Pet", pet.as_json)
+		 		end
+		 	end
 		 	redirect to '/'
 		end
 

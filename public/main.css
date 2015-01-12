@@ -55,7 +55,7 @@ body a{
 {
 	height:100%;
 	color:white;
-
+	display: initial;
 	
 }
 #content
@@ -63,6 +63,8 @@ body a{
 	background-color: #337AB7;
 	border-radius: 25px;
 	margin-bottom: 1px;
+	margin-left: 10%;
+	margin-right: 10%;
 
 }
 .form-control
