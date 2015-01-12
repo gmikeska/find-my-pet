@@ -4,6 +4,7 @@ require 'sinatra'
 require 'json'
 require 'bcrypt'
 require 'rack-flash'
+require 'pry-byebug'
 require_relative 'config/environments.rb'
 require_relative 'lib/geokitMethods.rb'
 
@@ -30,13 +31,23 @@ module FindMyPet
 			if session['user_id']
 				if @user.activation
 					erb :"auth/activation"
-				else		
-					postst = MissingPet.all
-					@posts = postst.to_json
+				else
+					@posts = MissingPet.all.as_json
+					@posts.each do |p|
+						images = LostImage.where(animal_id: p['id'])
+						image = images.first
+						if image
+							p["picurl"] = image["image_url"]
+						else 
+							p["picurl"] = ""
+						end
+					end
+					@posts = @posts.to_json
+					# binding.pry
 					erb :index
 				end	
 			else
-			  	@mission_statement = File.read('views/readins/mission statement.erb')
+			  @mission_statement = File.read('views/readins/mission statement.erb')
 				postst = MissingPet.all
 				@posts = postst.to_json
 			 	@mission_statement = File.read('views/readins/mission statement.erb')
