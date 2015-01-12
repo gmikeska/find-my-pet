@@ -38,9 +38,9 @@ module FindMyPet
 						image = images.first
 						if image
 							p["picurl"] = image["image_url"]
-						else 
-							p["picurl"] = ""
-						end
+					else 
+						p["picurl"] = "http://www.clker.com/cliparts/3/7/6/d/1256186461796715642question-mark-icon.svg.hi.png"
+					end
 					end
 					@posts = @posts.to_json
 					# binding.pry
@@ -239,11 +239,16 @@ module FindMyPet
 		get '/lost/:id' do
 			#return specific lost animal bulletin, and comments
 			@info = MissingPet.find(params[:id])
-			messages = LostMessage.joins(:user).where(animal_id: params['id'])
-				messages.each{|m|
+			image = LostImage.where(animal_id: params[:id]).first
+				if image
+					@picurl = image["image_url"]
+				else 
+					@picurl = "http://www.clker.com/cliparts/3/7/6/d/1256186461796715642question-mark-icon.svg.hi.png"
+				end
+			messages = LostMessage.joins(:user).where(animal_id: params['id']).as_json
+			messages.each{|m|
 				user = User.find(m['user_id']).as_json
 				m["username"] = user["name"]
-				puts m
 			}
 			@messages = messages.to_json
 			erb :"lost/bulletin"
@@ -294,6 +299,12 @@ module FindMyPet
 		get '/found/:id' do
 			#return specific found pet bulletin with comments
 			@info = FoundPet.find(params[:id])
+			image = FoundImage.where(animal_id: params[:id]).first
+				if image
+					@picurl = image["image_url"]
+				else 
+					@picurl = "http://www.clker.com/cliparts/3/7/6/d/1256186461796715642question-mark-icon.svg.hi.png"
+				end
 			messages = FoundMessage.where(animal_id: params['id']).as_json
 			messages.each{|m|
 				user = User.find(m['user_id']).as_json

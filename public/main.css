@@ -104,8 +104,11 @@ body a{
 
 .bulletin > img
 {
-	width: 200px;
+	max-width: 200px;
 	max-height: 131px;
+	float:left;
+	padding: 10px;
+
 
 }
 .bltn-grid-buffer

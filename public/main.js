@@ -1,5 +1,5 @@
 lostBulletin = _.template("<div class='col-md-1 bltn-grid-buffer'></div><div class='col-md-4 bulletin'><img src= <%= picurl %> ><h3><a href='/lost/<%= id %>'><%= name %></a></h3> <%=animal_breed %><br><%= animal_gender%><br>Lost at: <%= where_lost %></div><div class='col-md-1 bltn-grid-buffer'></div>") //this is a template, call it to build bulletins
-foundBulletin = _.template("<div class='col-md-1 bltn-grid-buffer'></div><div class='col-md-4 bulletin'><h3><a href='/found/<%= id %>'><%= name %></a></h3> <%=animal_breed %><br><%= animal_gender%><br>Found at: <%= where_found %></div><div class='col-md-1 bltn-grid-buffer'></div>")
+foundBulletin = _.template("<div class='col-md-1 bltn-grid-buffer'></div><div class='col-md-4 bulletin'><img src= <%= picurl %> ><h3><a href='/found/<%= id %>'><%= name %></a></h3> <%=animal_breed %><br><%= animal_gender%><br>Found at: <%= where_found %></div><div class='col-md-1 bltn-grid-buffer'></div>")
 
 commentsTemplate = _.template("<div class='col-md-6 comment'><p><b><%= username %> posted:</b></p><p><%= message %></p></div><br><br><br>")
 
