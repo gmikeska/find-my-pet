@@ -4,6 +4,7 @@ require 'sinatra'
 require 'json'
 require 'bcrypt'
 require 'rack-flash'
+require 'pry-byebug'
 require_relative 'config/environments.rb'
 require_relative 'lib/geokitMethods.rb'
 
@@ -30,13 +31,23 @@ module FindMyPet
 			if session['user_id']
 				if @user.activation
 					erb :"auth/activation"
-				else		
-					postst = MissingPet.all
-					@posts = postst.to_json
+				else
+					@posts = MissingPet.all.as_json
+					@posts.each do |p|
+						images = LostImage.where(animal_id: p['id'])
+						image = images.first
+						if image
+							p["picurl"] = image["image_url"]
+					else 
+						p["picurl"] = "http://www.clker.com/cliparts/3/7/6/d/1256186461796715642question-mark-icon.svg.hi.png"
+					end
+					end
+					@posts = @posts.to_json
+					# binding.pry
 					erb :index
 				end	
 			else
-			  	@mission_statement = File.read('views/readins/mission statement.erb')
+			  @mission_statement = File.read('views/readins/mission statement.erb')
 				postst = MissingPet.all
 				@posts = postst.to_json
 			 	@mission_statement = File.read('views/readins/mission statement.erb')
@@ -189,7 +200,17 @@ module FindMyPet
 		end
 		get '/lost' do
 		 	#view gallery of local lost animals
-		 	@bulletins = @user.within_radius(MissingPet).to_json
+		 	bulletins = @user.within_radius(MissingPet).as_json
+		 	bulletins.each do |p|
+				images = LostImage.where(animal_id: p['id'])
+				image = images.first
+				if image
+					p["picurl"] = image["image_url"]
+				else 
+					p["picurl"] = "http://www.clker.com/cliparts/3/7/6/d/1256186461796715642question-mark-icon.svg.hi.png"
+				end
+			end
+		 	@bulletins = bulletins.to_json
 		 	erb :missing
 		end
 
@@ -218,20 +239,36 @@ module FindMyPet
 		get '/lost/:id' do
 			#return specific lost animal bulletin, and comments
 			@info = MissingPet.find(params[:id])
-			messages = LostMessage.joins(:user).where(animal_id: params['id'])
+			image = LostImage.where(animal_id: params[:id]).first
+				if image
+					@picurl = image["image_url"]
+				else 
+					@picurl = "http://www.clker.com/cliparts/3/7/6/d/1256186461796715642question-mark-icon.svg.hi.png"
+				end
+			messages = LostMessage.joins(:user).where(animal_id: params['id']).as_json
+			messages.each{|m|
+				user = User.find(m['user_id']).as_json
+				m["username"] = user["name"]
+			}
 			@messages = messages.to_json
 			erb :"lost/bulletin"
 		end
 
 		get '/found' do
 		 	#create a new bulletin for a found pet
-		 	bulletins = @user.within_radius(FoundPet)
-	 	
-		 	bulletins.each{ |b|
-		 		if b['name'] == nil 
-		 			b['name'] = 'unknown'
+		 	bulletins = @user.within_radius(FoundPet).as_json
+	 		bulletins.each do |p|
+				images = FoundImage.where(animal_id: p['id'])
+				image = images.first
+				if image
+					p["picurl"] = image["image_url"]
+				else 
+					p["picurl"] = "http://www.clker.com/cliparts/3/7/6/d/1256186461796715642question-mark-icon.svg.hi.png"
+				end
+				if p['name'] == nil 
+		 			p['name'] = 'unknown'
 		 		end
-		 	}
+		 	end		 	
 		 	@bulletins = bulletins.to_json
 		 	erb :found
 		end
@@ -262,6 +299,12 @@ module FindMyPet
 		get '/found/:id' do
 			#return specific found pet bulletin with comments
 			@info = FoundPet.find(params[:id])
+			image = FoundImage.where(animal_id: params[:id]).first
+				if image
+					@picurl = image["image_url"]
+				else 
+					@picurl = "http://www.clker.com/cliparts/3/7/6/d/1256186461796715642question-mark-icon.svg.hi.png"
+				end
 			messages = FoundMessage.where(animal_id: params['id']).as_json
 			messages.each{|m|
 				user = User.find(m['user_id']).as_json

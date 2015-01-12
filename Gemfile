@@ -20,6 +20,7 @@ gem 'activerecord'
 gem 'active_record_tasks'
 gem 'rack-flash3'
 gem 'geokit'
+gem 'pry-byebug'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 

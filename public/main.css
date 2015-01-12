@@ -102,10 +102,30 @@ body a{
 		box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.75);	
 }
 
+.idbulletin
+{
+	font-family: 'Roboto Slab', serif;
+	padding-bottom: 10px;
+	opacity: .8;
+	background-color: #337AB7;
+	border-radius: 25px;
+	-webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.75);
+		box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.75);	
+}
+
+.idbulletin > img
+{
+	max-width: 400px;
+	max-height: 300px;
+}
 .bulletin > img
 {
-	width: 200px;
+	max-width: 200px;
 	max-height: 131px;
+	float:left;
+	padding: 10px;
+
 
 }
 .bltn-grid-buffer
