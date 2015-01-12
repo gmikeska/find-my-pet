@@ -5,5 +5,8 @@ require_relative '../lib/FindMyPet.rb'
 
 ActiveRecord::Base.establish_connection(
   :adapter => 'postgresql',
-  :database => 'findmypet'
+  :host     => ENV['DBHOST'],
+  :username => ENV['DBUSER'],
+  :password => ENV['DBPW'],
+  :database => ENV['DBNAME']
 )

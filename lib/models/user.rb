@@ -11,9 +11,9 @@ module FindMyPet
 			
 			the_email = "From: noreply@bringspothome.com\nSubject: #{subject}\n\n#{message}\n\n"
 			# handling exceptions  
-
+			puts "user: #{ENV['sendgrid_user']} password: #{ENV['sendgrid_pw']}"
 			Net::SMTP.start('smtp.sendgrid.net', 25, 'smtp.sendgrid.net',
-                'gmikeska', 'rubyjsmakersquare', :plain) do |smtp|
+                ENV['SENDGRIDUSER'], ENV['SENDGRIDPW'], :plain) do |smtp|
   					smtp.send_message the_email,
                     user_from,
                     user_to
