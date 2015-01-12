@@ -40,12 +40,12 @@ module GEO
       
     else
       resultsArray = Array.new    # return array
-      myLocation = Geokit::LatLng.new(myLongitude, myLatitude)
+      myLocation = Geokit::LatLng.new(myLatitude myLongitude)
 
       results.each do |result|
         # puts "(x, y): " + "#{result['where_longitude']}" + ", " + "#{result['where_latitude']}"
 
-        theirLocation = Geokit::LatLng.new("#{result.longitude}", "#{result.latitude}")
+        theirLocation = Geokit::LatLng.new("#{result.latitude}", "#{result.longitude}")
         distance = myLocation.distance_to(theirLocation)
 
         #puts "Distance: " + distance.to_s
