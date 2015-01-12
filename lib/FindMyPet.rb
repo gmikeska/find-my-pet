@@ -21,7 +21,7 @@ module FMP
   end
 
   def self.create_db_connection dbname
-    PG.connect(host: 'localhost', dbname: dbname)
+    PG.connect(host: ENV['DBHOST'], dbname: dbname, user:ENV['DBUSR'], password:ENV['DBPASS'])
   end
 
   #

@@ -13,7 +13,7 @@ module FindMyPet
 			# handling exceptions  
 			puts "user: #{ENV['sendgrid_user']} password: #{ENV['sendgrid_pw']}"
 			Net::SMTP.start('smtp.sendgrid.net', 25, 'smtp.sendgrid.net',
-                ENV['SENDGRIDUSER'], ENV['SENDGRIDPW'], :plain) do |smtp|
+                ENV['SENDGRIDUSER'], ENV['sendgrid_pw'], :plain) do |smtp|
   					smtp.send_message the_email,
                     user_from,
                     user_to

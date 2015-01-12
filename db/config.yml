@@ -1,11 +1,11 @@
 development:
   adapter: postgresql
-  database: findmypet
+  database: dfuf4gtvlkndlc
   pool: 5
   timeout: 5000
 
 test:
   adapter: postgresql
-  database: findmypet
+  database: dfuf4gtvlkndlc
   pool: 5
   timeout: 5000
