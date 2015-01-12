@@ -179,15 +179,14 @@ module FMP
   def self.seed_tables db
     pwd = BCrypt::Password.create("1234")
     db.exec("INSERT INTO users (name, email_address, password_hash, street_address, city, state, zipcode, longitude, latitude, radius)
-        VALUES ('Greg H','greghorne@hotmail.com','#{pwd}', '1116 S Tamarack Ave', 'Broken Arrow', 'OK','74012', -95.7932008, 36.05826630000001, 5);")
+        VALUES ('Greg H','greghorne@hotmail.com','#{pwd}', '1116 S Tamarack Ave', 'Broken Arrow', 'OK','74012', -95.7932008, 36.05826630000001, 10);")
 
       db.exec("INSERT INTO users (name, email_address, password_hash, street_address, city, state, zipcode,longitude, latitude, radius)
-        VALUES ('Julia','julia@pets.com','#{pwd}', '716 Congress Ave', 'Austin', 'TX','', -97.7475944, 30.2552373, 6);")
+        VALUES ('Julia','julia@pets.com','#{pwd}', '716 Congress Ave', 'Austin', 'TX','', -97.7475944, 30.2552373, 10);")
 
       db.exec("INSERT INTO users (name, email_address, password_hash, street_address, city, state, zipcode,longitude, latitude, radius)
-        VALUES ('Greg M','greg@bitcoin.com','#{pwd}', 'Town Lake', 'Austin', 'TX','', -97.7181049, 30.2476846, 4);")
+        VALUES ('Greg M','greg@bitcoin.com','#{pwd}', 'Town Lake', 'Austin', 'TX','', -97.7181049, 30.2476846, 10);")
      db.exec <<-SQL 
-      -- lost
       INSERT INTO lost (name,user_id, animal_type, animal_breed, animal_gender, comment, is_lost,
         date_lost, where_lost, chip_manufacturer, chip_id, other, created, where_longitude, where_latitude)
         VALUES ('Fido', 1, 'Dog', 'German Shorthaired Pointer', 'Male', 'friendly, orange collar', TRUE, 
