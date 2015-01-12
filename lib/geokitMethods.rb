@@ -25,7 +25,6 @@ module GEO
     # Return: array of 'id' from tablename; blank array if nothing
     #
 
-    #
     # Sample Call
     # GEO::getWithinRadius(0.1, -97.7181049, 30.2476846, 'lost', 'findmypet')
     # GEO::getWithinRadius(5, -97.7181049, 30.2476846, 'lost', 'findmypet')
