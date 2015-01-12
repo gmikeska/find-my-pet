@@ -33,7 +33,6 @@ module FindMyPet
 				else		
 					postst = MissingPet.all
 					@posts = postst.to_json
-					# puts @posts
 					erb :index
 				end	
 			else
@@ -191,7 +190,6 @@ module FindMyPet
 		get '/lost' do
 		 	#view gallery of local lost animals
 		 	@bulletins = @user.within_radius(MissingPet).to_json
-		 	puts @bulletins
 		 	erb :missing
 		end
 
@@ -212,7 +210,6 @@ module FindMyPet
 			@info = MissingPet.find(params[:id])
 			messages = LostMessage.joins(:user).where(animal_id: params['id'])
 			@messages = messages.to_json
-			puts @messages
 			erb :"lost/bulletin"
 		end
 
@@ -250,7 +247,12 @@ module FindMyPet
 		get '/found/:id' do
 			#return specific found pet bulletin with comments
 			@info = FoundPet.find(params[:id])
-			messages = FoundMessage.where(animal_id: params['id'])
+			messages = FoundMessage.where(animal_id: params['id']).as_json
+			messages.each{|m|
+				user = User.find(m['user_id']).as_json
+				m["username"] = user["name"]
+				puts m
+			}
 			@messages = messages.to_json
 			erb :"found/bulletin"
 
