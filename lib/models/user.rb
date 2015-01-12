@@ -28,7 +28,7 @@ module FindMyPet
   		end
 		def send_activation ()
 			subject = "Welcome to Bring Spot Home!"
-			message = "Dear #{self.name},\nThank you for signing up for Bring Spot Home!\n\nYour activation code is: #{self.activation}\n\nYou can click on the following link to activate your account:\n http://localhost:4567/activation?activation=#{self.activation}\n\n Thanks!\nThe BSH Team!"
+			message = "Dear #{self.name},\nThank you for signing up for Bring Spot Home!\n\nYour activation code is: #{self.activation}\n\nYou can click on the following link to activate your account:\n http://find-my-pet.herokuapp.com/activation?activation=#{self.activation}\n\n Thanks!\nThe BSH Team!"
 			self.send_email(subject, message)
 		end
 		def within_radius(tablename)
